@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
+import { sendInquiryEmail } from '@/lib/mail';
 
 export async function POST(req: NextRequest) {
   try {
@@ -25,10 +26,23 @@ export async function POST(req: NextRequest) {
     const inquiry = db.addInquiry({
       name,
       email,
-      projectType: projectType || 'Full-Stack / 3D Web',
+      projectType: projectType || 'Senior Full Stack MERN Engineering',
       budget: budget || 'Flexible',
       message,
     });
+
+    // Dispatch email notification to Sai Sahith
+    try {
+      await sendInquiryEmail({
+        name,
+        email,
+        projectType: projectType || 'Senior Full Stack MERN Engineering',
+        budget: budget || 'Flexible',
+        message,
+      });
+    } catch (mailError) {
+      console.warn('⚠️ Non-fatal: Inquiry saved to database, but email dispatch failed:', mailError);
+    }
 
     return NextResponse.json(
       {
