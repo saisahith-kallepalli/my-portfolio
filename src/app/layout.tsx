@@ -26,6 +26,11 @@ export const metadata: Metadata = {
     siteName: 'Sai Sahith Full Stack Engineering Portfolio',
     type: 'website',
   },
+  icons: {
+    icon: '/vercel.svg',
+    shortcut: '/vercel.svg',
+    apple: '/vercel.svg',
+  },
 };
 
 import { ThemeProvider } from '@/components/ThemeProvider';

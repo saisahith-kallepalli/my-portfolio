@@ -1,1 +1,33 @@
-<svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1155 1000"><path d="m577.3 0 577.4 1000H0z" fill="#fff"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <!-- Sleek Dark Obsidian Base with Subtle Border -->
+  <rect x="20" y="20" width="472" height="472" rx="112" fill="#0b0c10" stroke="#2a2e35" stroke-width="16"/>
+
+  <!-- Subtle Radial Architectural Glow -->
+  <circle cx="256" cy="256" r="140" fill="url(#subtleGlow)" opacity="0.15"/>
+
+  <!-- Stylish Cybernetic Geometric "S" Emblem -->
+  <path d="M 352 120 L 220 120 C 172 120 148 144 148 180 C 148 216 172 232 228 248 L 284 264 C 340 280 364 296 364 332 C 364 368 340 392 292 392 L 160 392" stroke="url(#sGradient)" stroke-width="44" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- High-Tech Architectural Slash Accents -->
+  <path d="M 352 120 L 384 88" stroke="#888888" stroke-width="28" stroke-linecap="round"/>
+  <path d="M 160 392 L 128 424" stroke="#888888" stroke-width="28" stroke-linecap="round"/>
+
+  <!-- Engineering Node Endpoints -->
+  <circle cx="384" cy="88" r="16" fill="#ffffff"/>
+  <circle cx="128" cy="424" r="16" fill="#ffffff"/>
+
+  <!-- Center Architecture Core Dot -->
+  <circle cx="256" cy="256" r="12" fill="#ffffff"/>
+
+  <!-- Gradient Definitions -->
+  <defs>
+    <linearGradient id="sGradient" x1="148" y1="120" x2="364" y2="392" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#cccccc"/>
+    </linearGradient>
+    <radialGradient id="subtleGlow" cx="256" cy="256" r="140" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#0b0c10" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+</svg>
