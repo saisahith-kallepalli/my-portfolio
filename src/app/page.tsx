@@ -36,8 +36,9 @@ export default function PortfolioPage() {
       {/* Floating Obsidian Glass Navbar */}
       <Navbar />
 
-      {/* Hero Intro with Interactive Ambient Canvas & Stats */}
+      {/* Hero Intro with Centered Typography & Typewriter */}
       <Hero />
+
 
       {/* Flagship Enterprise Case Studies Segment */}
       <ShowreelSection
