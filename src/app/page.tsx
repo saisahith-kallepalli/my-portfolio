@@ -41,10 +41,10 @@ export default function PortfolioPage() {
 
 
       {/* Flagship Enterprise Case Studies Segment */}
-      <ShowreelSection
+      {/* <ShowreelSection
         featuredProjects={initialProjects}
         onSelectProject={handleOpenModal}
-      />
+      /> */}
 
       {/* Comprehensive Filterable Project Gallery */}
       <ProjectGallery

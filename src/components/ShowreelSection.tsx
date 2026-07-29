@@ -1,8 +1,14 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { Project } from '@/lib/types';
-import { Sparkles, ArrowRight, ExternalLink, Cpu, CheckCircle2 } from 'lucide-react';
+import React from "react";
+import { Project } from "@/lib/types";
+import {
+  Sparkles,
+  ArrowRight,
+  ExternalLink,
+  Cpu,
+  CheckCircle2,
+} from "lucide-react";
 
 interface ShowreelSectionProps {
   featuredProjects: Project[];
@@ -17,10 +23,17 @@ export default function ShowreelSection({
   const flagshipProjects = featuredProjects.slice(0, 3);
 
   return (
-    <section id="featured" className="section" style={{ position: 'relative' }}>
+    <section id="featured" className="section" style={{ position: "relative" }}>
       <div className="container">
         {/* Section Header */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '0.75rem' }}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "0.6rem",
+            marginBottom: "0.75rem",
+          }}
+        >
           <span className="badge">
             <Sparkles size={14} />
             FLAGSHIP ENTERPRISE CASE STUDIES
@@ -29,24 +42,31 @@ export default function ShowreelSection({
 
         <div
           style={{
-            display: 'flex',
-            alignItems: 'flex-end',
-            justifyContent: 'space-between',
-            flexWrap: 'wrap',
-            gap: '1.5rem',
-            marginBottom: '3.5rem',
+            display: "flex",
+            alignItems: "flex-end",
+            justifyContent: "space-between",
+            flexWrap: "wrap",
+            gap: "1.5rem",
+            marginBottom: "3.5rem",
           }}
         >
           <div>
             <h2 className="section-title">
-              High-Performance <span className="gradient-text">MERN &amp; Next.js</span> Platforms.
+              High-Performance{" "}
+              <span className="gradient-text">MERN &amp; Next.js</span>{" "}
+              Platforms.
             </h2>
             <p className="section-subtitle" style={{ margin: 0 }}>
-              Delivering business-impacting enterprise solutions with 99.9% availability, SSR/SSG caching, and scalable design systems.
+              Delivering business-impacting enterprise solutions with 99.9%
+              availability, SSR/SSG caching, and scalable design systems.
             </p>
           </div>
 
-          <a href="#projects" className="btn-secondary" style={{ padding: '0.75rem 1.4rem' }}>
+          <a
+            href="#projects"
+            className="btn-secondary"
+            style={{ padding: "0.75rem 1.4rem" }}
+          >
             <span>Explore All Projects</span>
             <ArrowRight size={17} />
           </a>
@@ -55,9 +75,9 @@ export default function ShowreelSection({
         {/* Flagship Case Studies Showcase Grid */}
         <div
           style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))',
-            gap: '2.5rem',
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))",
+            gap: "2.5rem",
           }}
         >
           {flagshipProjects.map((project, idx) => (
@@ -65,88 +85,72 @@ export default function ShowreelSection({
               key={project.id}
               className="glass-card"
               style={{
-                borderRadius: '24px',
-                overflow: 'hidden',
-                display: 'flex',
-                flexDirection: 'column',
-                transition: 'transform 0.3s, border-color 0.3s',
+                borderRadius: "24px",
+                overflow: "hidden",
+                display: "flex",
+                flexDirection: "column",
+                transition: "transform 0.3s, border-color 0.3s",
               }}
               onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.transform = 'translateY(-6px)';
-                (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255, 255, 255, 0.4)';
+                (e.currentTarget as HTMLElement).style.transform =
+                  "translateY(-6px)";
+                (e.currentTarget as HTMLElement).style.borderColor =
+                  "rgba(255, 255, 255, 0.4)";
               }}
               onMouseLeave={(e) => {
-                (e.currentTarget as HTMLElement).style.transform = 'translateY(0)';
-                (e.currentTarget as HTMLElement).style.borderColor = 'var(--color-border)';
+                (e.currentTarget as HTMLElement).style.transform =
+                  "translateY(0)";
+                (e.currentTarget as HTMLElement).style.borderColor =
+                  "var(--color-border)";
               }}
             >
               {/* Card Image Banner */}
+
               <div
                 style={{
-                  position: 'relative',
-                  height: '240px',
-                  background: 'var(--color-bg-subtle)',
-                  overflow: 'hidden',
+                  display: "inline-block",
+                  padding: "0.35rem 0.85rem",
+                  borderRadius: "8px",
+                  background: "var(--color-bg-subtle)",
+                  border: "1px solid var(--color-border)",
+                  fontSize: "0.74rem",
+                  fontWeight: 700,
+                  color: "var(--color-text-primary)",
+                  textTransform: "uppercase",
+                  marginBottom: "1rem",
                 }}
               >
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                    opacity: 0.9,
-                  }}
-                />
-                <div
-                  style={{
-                    position: 'absolute',
-                    top: '1rem',
-                    left: '1rem',
-                    padding: '0.4rem 0.8rem',
-                    borderRadius: '999px',
-                    background: 'var(--color-bg-surface)',
-                    border: '1px solid var(--color-border)',
-                    fontSize: '0.75rem',
-                    fontWeight: 700,
-                    color: 'var(--color-text-primary)',
-                    textTransform: 'uppercase',
-                    boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-                  }}
-                >
-                  {project.category}
-                </div>
+                {project.category}
               </div>
 
               {/* Card Content */}
               <div
                 style={{
-                  padding: '2rem',
-                  display: 'flex',
-                  flexDirection: 'column',
+                  padding: "2rem",
+                  display: "flex",
+                  flexDirection: "column",
                   flexGrow: 1,
-                  justifyContent: 'space-between',
+                  justifyContent: "space-between",
                 }}
               >
                 <div>
                   <div
                     style={{
-                      fontSize: '0.8rem',
+                      fontSize: "0.8rem",
                       fontWeight: 600,
-                      color: 'var(--color-text-muted)',
-                      marginBottom: '0.4rem',
-                      fontFamily: 'var(--font-mono)',
+                      color: "var(--color-text-muted)",
+                      marginBottom: "0.4rem",
+                      fontFamily: "var(--font-mono)",
                     }}
                   >
                     CASE STUDY #{idx + 1}
                   </div>
                   <h3
                     style={{
-                      fontSize: '1.45rem',
+                      fontSize: "1.45rem",
                       fontWeight: 700,
-                      color: 'var(--color-text-primary)',
-                      marginBottom: '0.6rem',
+                      color: "var(--color-text-primary)",
+                      marginBottom: "0.6rem",
                       lineHeight: 1.25,
                     }}
                   >
@@ -154,10 +158,10 @@ export default function ShowreelSection({
                   </h3>
                   <p
                     style={{
-                      color: 'var(--color-text-secondary)',
-                      fontSize: '0.92rem',
+                      color: "var(--color-text-secondary)",
+                      fontSize: "0.92rem",
                       lineHeight: 1.6,
-                      marginBottom: '1.5rem',
+                      marginBottom: "1.5rem",
                     }}
                   >
                     {project.description}
@@ -167,29 +171,41 @@ export default function ShowreelSection({
                   {project.metrics && (
                     <div
                       style={{
-                        display: 'flex',
-                        flexWrap: 'wrap',
-                        gap: '0.75rem',
-                        marginBottom: '1.5rem',
+                        display: "flex",
+                        flexWrap: "wrap",
+                        gap: "0.75rem",
+                        marginBottom: "1.5rem",
                       }}
                     >
                       {project.metrics.map((metric, mIdx) => (
                         <div
                           key={mIdx}
                           style={{
-                            padding: '0.45rem 0.8rem',
-                            borderRadius: '10px',
-                            background: 'var(--color-bg-subtle)',
-                            border: '1px solid var(--color-border)',
-                            fontSize: '0.78rem',
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: '0.4rem',
+                            padding: "0.45rem 0.8rem",
+                            borderRadius: "10px",
+                            background: "var(--color-bg-subtle)",
+                            border: "1px solid var(--color-border)",
+                            fontSize: "0.78rem",
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "0.4rem",
                           }}
                         >
-                          <CheckCircle2 size={13} color="var(--color-accent-cyan)" />
-                          <span style={{ fontWeight: 700, color: 'var(--color-text-primary)' }}>{metric.value}</span>
-                          <span style={{ color: 'var(--color-text-muted)' }}>{metric.label}</span>
+                          <CheckCircle2
+                            size={13}
+                            color="var(--color-accent-cyan)"
+                          />
+                          <span
+                            style={{
+                              fontWeight: 700,
+                              color: "var(--color-text-primary)",
+                            }}
+                          >
+                            {metric.value}
+                          </span>
+                          <span style={{ color: "var(--color-text-muted)" }}>
+                            {metric.label}
+                          </span>
                         </div>
                       ))}
                     </div>
@@ -198,10 +214,10 @@ export default function ShowreelSection({
                   {/* Tech stack */}
                   <div
                     style={{
-                      display: 'flex',
-                      flexWrap: 'wrap',
-                      gap: '0.45rem',
-                      marginBottom: '1.75rem',
+                      display: "flex",
+                      flexWrap: "wrap",
+                      gap: "0.45rem",
+                      marginBottom: "1.75rem",
                     }}
                   >
                     {project.techStack.map((t, tIdx) => (
@@ -217,14 +233,14 @@ export default function ShowreelSection({
                   onClick={() => onSelectProject(project)}
                   className="btn-primary"
                   style={{
-                    width: '100%',
-                    justifyContent: 'center',
-                    padding: '0.85rem 1rem',
+                    width: "100%",
+                    justifyContent: "center",
+                    padding: "0.85rem 1rem",
                   }}
                 >
                   <Cpu size={16} />
                   <span>Inspect Enterprise Case Study</span>
-                  <ExternalLink size={15} style={{ marginLeft: 'auto' }} />
+                  <ExternalLink size={15} style={{ marginLeft: "auto" }} />
                 </button>
               </div>
             </div>

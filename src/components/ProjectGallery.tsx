@@ -51,7 +51,7 @@ export default function ProjectGallery({
         >
           <div>
             <h2 className="section-title">
-              Full-Stack <span className="gradient-text">Project Gallery</span>.
+              Full-Stack <span className="gradient-text">Project Gallery</span>
             </h2>
             <p className="section-subtitle" style={{ margin: 0 }}>
               Filter through scalable enterprise Next.js, Node.js, GraphQL, and eCommerce platforms engineered by Sai Sahith.
@@ -124,49 +124,10 @@ export default function ProjectGallery({
                 (e.currentTarget as HTMLElement).style.borderColor = 'var(--color-border)';
               }}
             >
-              {/* Thumbnail banner */}
-              <div
-                style={{
-                  position: 'relative',
-                  height: '210px',
-                  background: 'var(--color-bg-subtle)',
-                  overflow: 'hidden',
-                }}
-              >
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                    opacity: 0.9,
-                  }}
-                />
-                <div
-                  style={{
-                    position: 'absolute',
-                    top: '0.8rem',
-                    right: '0.8rem',
-                    padding: '0.35rem 0.75rem',
-                    borderRadius: '8px',
-                    background: 'var(--color-bg-surface)',
-                    border: '1px solid var(--color-border)',
-                    fontSize: '0.72rem',
-                    fontWeight: 700,
-                    color: 'var(--color-text-primary)',
-                    textTransform: 'uppercase',
-                    boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-                  }}
-                >
-                  {project.category}
-                </div>
-              </div>
-
               {/* Card info */}
               <div
                 style={{
-                  padding: '1.75rem',
+                  padding: '2rem 1.75rem 1.75rem',
                   display: 'flex',
                   flexDirection: 'column',
                   flexGrow: 1,
@@ -174,9 +135,25 @@ export default function ProjectGallery({
                 }}
               >
                 <div>
+                  <div
+                    style={{
+                      display: 'inline-block',
+                      padding: '0.35rem 0.75rem',
+                      borderRadius: '8px',
+                      background: 'var(--color-bg-subtle)',
+                      border: '1px solid var(--color-border)',
+                      fontSize: '0.72rem',
+                      fontWeight: 700,
+                      color: 'var(--color-text-primary)',
+                      textTransform: 'uppercase',
+                      marginBottom: '1rem',
+                    }}
+                  >
+                    {project.category}
+                  </div>
                   <h3
                     style={{
-                      fontSize: '1.3rem',
+                      fontSize: '1.35rem',
                       fontWeight: 700,
                       color: 'var(--color-text-primary)',
                       marginBottom: '0.5rem',

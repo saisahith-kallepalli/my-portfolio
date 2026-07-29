@@ -101,37 +101,15 @@ export default function ShowreelModal({ project, onClose }: ShowreelModalProps) 
             gap: '2.5rem',
           }}
         >
-          {/* Left Column: Media Showcase & Architectural Details */}
+          {/* Left Column: Architectural Details */}
           <div>
-            <div
-              style={{
-                borderRadius: '20px',
-                overflow: 'hidden',
-                background: 'rgba(0,0,0,0.5)',
-                border: '1px solid var(--color-border)',
-                marginBottom: '2rem',
-                position: 'relative',
-                height: '320px',
-              }}
-            >
-              <img
-                src={project.image}
-                alt={project.title}
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover',
-                }}
-              />
-            </div>
-
-            <h3 style={{ fontSize: '1.8rem', fontWeight: 800, color: '#fff', marginBottom: '0.5rem' }}>
+            <h3 style={{ fontSize: '1.8rem', fontWeight: 800, color: 'var(--color-text-primary)', marginBottom: '0.5rem' }}>
               {project.title}
             </h3>
             <div
               style={{
                 fontSize: '1rem',
-                color: 'var(--color-accent-cyan)',
+                color: 'var(--color-text-secondary)',
                 fontWeight: 600,
                 marginBottom: '1.25rem',
               }}

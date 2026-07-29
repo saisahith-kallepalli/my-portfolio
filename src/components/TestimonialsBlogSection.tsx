@@ -222,44 +222,7 @@ export default function TestimonialsBlogSection({
               >
                 <div
                   style={{
-                    position: 'relative',
-                    height: '210px',
-                    background: 'var(--color-bg-subtle)',
-                  }}
-                >
-                  <img
-                    src={post.coverImage}
-                    alt={post.title}
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'cover',
-                      opacity: 0.9,
-                    }}
-                  />
-                  <div
-                    style={{
-                      position: 'absolute',
-                      top: '1rem',
-                      left: '1rem',
-                      padding: '0.35rem 0.85rem',
-                      borderRadius: '999px',
-                      background: 'var(--color-bg-surface)',
-                      border: '1px solid var(--color-border)',
-                      fontSize: '0.74rem',
-                      fontWeight: 700,
-                      color: 'var(--color-text-primary)',
-                      textTransform: 'uppercase',
-                      boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
-                    }}
-                  >
-                    {post.category}
-                  </div>
-                </div>
-
-                <div
-                  style={{
-                    padding: '2rem',
+                    padding: '2.25rem 2rem 2rem',
                     display: 'flex',
                     flexDirection: 'column',
                     flexGrow: 1,
@@ -267,6 +230,23 @@ export default function TestimonialsBlogSection({
                   }}
                 >
                   <div>
+                    <div
+                      style={{
+                        display: 'inline-block',
+                        padding: '0.35rem 0.85rem',
+                        borderRadius: '8px',
+                        background: 'var(--color-bg-subtle)',
+                        border: '1px solid var(--color-border)',
+                        fontSize: '0.74rem',
+                        fontWeight: 700,
+                        color: 'var(--color-text-primary)',
+                        textTransform: 'uppercase',
+                        marginBottom: '1rem',
+                      }}
+                    >
+                      {post.category}
+                    </div>
+
                     <div
                       style={{
                         display: 'flex',
