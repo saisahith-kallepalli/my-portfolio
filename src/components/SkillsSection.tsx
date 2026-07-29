@@ -43,6 +43,7 @@ export default function SkillsSection({ skills }: SkillsSectionProps) {
         </div>
 
         <div
+          className="section-header-row"
           style={{
             display: 'flex',
             alignItems: 'flex-end',
@@ -61,18 +62,8 @@ export default function SkillsSection({ skills }: SkillsSectionProps) {
             </p>
           </div>
 
-          {/* Category Tabs - Clean Monochrome */}
-          <div
-            style={{
-              display: 'flex',
-              flexWrap: 'wrap',
-              gap: '0.5rem',
-              background: 'var(--color-bg-subtle)',
-              padding: '0.4rem',
-              borderRadius: '999px',
-              border: '1px solid var(--color-border)',
-            }}
-          >
+          {/* Category Tabs - Clean Monochrome & Mobile Responsive Swipeable Pill Bar */}
+          <div className="category-filter-bar" role="tablist" aria-label="Skill Categories">
             {categories.map((cat) => {
               const isActive = activeTab === cat.value;
               return (
@@ -88,17 +79,9 @@ export default function SkillsSection({ skills }: SkillsSectionProps) {
                       setSelectedSkill(newFiltered[0]);
                     }
                   }}
-                  style={{
-                    padding: '0.5rem 1.25rem',
-                    borderRadius: '999px',
-                    fontSize: '0.85rem',
-                    fontWeight: 600,
-                    cursor: 'pointer',
-                    background: isActive ? 'var(--color-text-primary)' : 'transparent',
-                    color: isActive ? 'var(--color-bg-primary)' : 'var(--color-text-secondary)',
-                    border: 'none',
-                    transition: 'all 0.25s ease',
-                  }}
+                  className={`category-filter-btn ${isActive ? 'active' : ''}`}
+                  role="tab"
+                  aria-selected={isActive}
                 >
                   {cat.label}
                 </button>

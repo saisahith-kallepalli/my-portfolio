@@ -69,6 +69,7 @@ export interface ContactInquiry {
   id: string;
   name: string;
   email: string;
+  phone?: string;
   subject?: string;
   projectType?: string;
   budget?: string;

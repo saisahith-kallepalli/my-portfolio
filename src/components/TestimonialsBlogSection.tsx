@@ -26,6 +26,7 @@ export default function TestimonialsBlogSection({
         </div>
 
         <div
+          className="section-header-row"
           style={{
             display: 'flex',
             alignItems: 'flex-end',

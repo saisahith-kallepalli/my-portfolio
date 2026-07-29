@@ -1,17 +1,9 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import {
-  ArrowRight,
-  Terminal,
-  Sparkles,
-  Award,
-  Download,
-  Cpu,
-  Database,
-  Layout,
-} from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { ArrowRight, Terminal, Sparkles } from "lucide-react";
+import { motion } from "framer-motion";
+import InteractiveProfileCard from "@/components/InteractiveProfileCard";
 
 const ROLES = [
   "SENIOR FULL STACK ENGINEER",
@@ -66,7 +58,6 @@ export default function Hero() {
         paddingBottom: "5rem",
         position: "relative",
         overflow: "hidden",
-        textAlign: "center",
       }}
     >
       {/* Background ambient glow circles */}
@@ -91,156 +82,121 @@ export default function Hero() {
         style={{
           position: "relative",
           zIndex: 1,
-          maxWidth: "1050px",
+          maxWidth: "1180px",
           margin: "0 auto",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
           width: "100%",
         }}
       >
-        {/* Availability Badge */}
-        <motion.div
-          initial={{ opacity: 0, y: -15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "0.5rem",
-            marginBottom: "1.8rem",
-          }}
-        >
-          <span className="badge">
-            <Sparkles size={14} />
-            AVAILABLE FOR SENIOR FULL STACK &amp; MERN ENGINEERING
-          </span>
-        </motion.div>
-
-        {/* Main Name Heading */}
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.1 }}
-          style={{
-            fontSize: "clamp(2.8rem, 7vw, 5.5rem)",
-            fontWeight: 900,
-            lineHeight: 1.05,
-            letterSpacing: "-0.04em",
-            marginBottom: "1rem",
-            color: "var(--color-text-primary)",
-            width: "100%",
-          }}
-        >
-          SAI SAHITH <span className="gradient-text">KALLEPALLI</span>
-        </motion.h1>
-
-        {/* Dynamic Typewriter Title */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.7, delay: 0.2 }}
-          style={{
-            minHeight: "3.2rem",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            marginBottom: "2rem",
-          }}
-        >
-          <div
-            style={{
-              fontSize: "clamp(1.2rem, 3vw, 2.2rem)",
-              fontWeight: 800,
-              fontFamily: "var(--font-mono)",
-              color: "var(--color-accent-cyan)",
-              textShadow: "0 0 20px rgba(255, 255, 255, 0.45)",
-              letterSpacing: "0.04em",
-            }}
-          >
-            {displayText}
-            <span
+        {/* Responsive Two-Column Hero Grid */}
+        <div className="hero-grid">
+          {/* Left Column: Typography, Roles & Actions */}
+          <div className="hero-text-col">
+            {/* Availability Badge */}
+            <motion.div
+              initial={{ opacity: 0, y: -15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
               style={{
-                display: "inline-block",
-                width: "3px",
-                height: "1.1em",
-                backgroundColor: "var(--color-text-primary)",
-                marginLeft: "6px",
-                verticalAlign: "middle",
-                animation: "cursorBlink 1s infinite",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "0.5rem",
+                marginBottom: "1.8rem",
               }}
-            />
+            >
+              <span className="badge">
+                <Sparkles size={14} />
+                AVAILABLE FOR SENIOR FULL STACK &amp; MERN ENGINEERING
+              </span>
+            </motion.div>
+
+            {/* Main Name Heading */}
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.1 }}
+              className="hero-name-heading"
+            >
+              SAI SAHITH <span className="gradient-text">KALLEPALLI</span>
+            </motion.h1>
+
+            {/* Dynamic Typewriter Title */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+              className="hero-typewriter-wrap"
+            >
+              <div className="hero-typewriter-text">
+                {displayText}
+                <span className="cursor-blink" />
+              </div>
+            </motion.div>
+
+            {/* Full-Width Description */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.3 }}
+              className="hero-description"
+            >
+              Senior Full Stack Software Engineer with nearly 5 years of experience
+              architecting high-performance web &amp; enterprise applications using{" "}
+              <strong style={{ color: "var(--color-text-primary)" }}>
+                React 18
+              </strong>
+              ,{" "}
+              <strong style={{ color: "var(--color-text-primary)" }}>
+                Next.js 14
+              </strong>
+              ,{" "}
+              <strong style={{ color: "var(--color-text-primary)" }}>
+                Node.js
+              </strong>
+              , and{" "}
+              <strong style={{ color: "var(--color-text-primary)" }}>
+                MongoDB
+              </strong>
+              . Proven track record in performance optimization (+35% LCP
+              reduction), SSR/SSG caching, and scalable UI architecture.
+            </motion.p>
+
+            {/* Action Buttons */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.4 }}
+              className="hero-actions"
+            >
+              <a
+                href="#projects"
+                className="btn-primary"
+                style={{ padding: "0.85rem 2.2rem", fontSize: "1rem" }}
+              >
+                <span>Explore Projects</span>
+                <ArrowRight size={19} />
+              </a>
+
+              <a
+                href="#contact"
+                className="btn-secondary"
+                style={{ padding: "0.85rem 2.2rem", fontSize: "1rem" }}
+              >
+                <Terminal size={18} />
+                <span>Contact me</span>
+              </a>
+            </motion.div>
           </div>
-        </motion.div>
 
-        {/* Full-Width Centered Description */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.3 }}
-          style={{
-            fontSize: "clamp(1.08rem, 1.45vw, 1.28rem)",
-            color: "var(--color-text-secondary)",
-            lineHeight: 1.7,
-            marginBottom: "2.8rem",
-            maxWidth: "850px",
-            width: "100%",
-          }}
-        >
-          Senior Full Stack Software Engineer with nearly 5 years of experience
-          architecting high-performance web &amp; enterprise applications using{" "}
-          <strong style={{ color: "var(--color-text-primary)" }}>
-            React 18
-          </strong>
-          ,{" "}
-          <strong style={{ color: "var(--color-text-primary)" }}>
-            Next.js 14
-          </strong>
-          ,{" "}
-          <strong style={{ color: "var(--color-text-primary)" }}>
-            Node.js
-          </strong>
-          , and{" "}
-          <strong style={{ color: "var(--color-text-primary)" }}>
-            MongoDB
-          </strong>
-          . Proven track record in performance optimization (+35% LCP
-          reduction), SSR/SSG caching, and scalable UI architecture.
-        </motion.p>
-
-        {/* Action Buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.4 }}
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: "1.25rem",
-            flexWrap: "wrap",
-            marginBottom: "4rem",
-            width: "100%",
-          }}
-        >
-          <a
-            href="#projects"
-            className="btn-primary"
-            style={{ padding: "0.85rem 2.2rem", fontSize: "1rem" }}
+          {/* Right Column: Interactive & Transitional Profile Card */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="hero-image-col"
           >
-            <span>Explore Projects</span>
-            <ArrowRight size={19} />
-          </a>
-
-          <a
-            href="#contact"
-            className="btn-secondary"
-            style={{ padding: "0.85rem 2.2rem", fontSize: "1rem" }}
-          >
-            <Terminal size={18} />
-            <span>Contact me</span>
-          </a>
-        </motion.div>
+            <InteractiveProfileCard />
+          </motion.div>
+        </div>
 
         {/* Full-Width Metrics & Certifications Grid */}
         <motion.div
@@ -377,6 +333,100 @@ export default function Hero() {
       </div>
 
       <style jsx>{`
+        .hero-grid {
+          display: grid;
+          grid-template-columns: 1.15fr 0.85fr;
+          align-items: center;
+          gap: 3.5rem;
+          width: 100%;
+          margin-bottom: 4.5rem;
+        }
+        .hero-text-col {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          text-align: left;
+          width: 100%;
+        }
+        .hero-image-col {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+        }
+        .hero-name-heading {
+          font-size: clamp(2.6rem, 5.5vw, 4.8rem);
+          font-weight: 900;
+          line-height: 1.05;
+          letter-spacing: -0.04em;
+          margin-bottom: 1rem;
+          color: var(--color-text-primary);
+          width: 100%;
+        }
+        .hero-typewriter-wrap {
+          min-height: 3.2rem;
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          margin-bottom: 2rem;
+          width: 100%;
+        }
+        .hero-typewriter-text {
+          font-size: clamp(1.2rem, 2.5vw, 2.1rem);
+          font-weight: 800;
+          font-family: var(--font-mono);
+          color: var(--color-accent-cyan);
+          text-shadow: 0 0 20px rgba(255, 255, 255, 0.45);
+          letter-spacing: 0.04em;
+        }
+        .cursor-blink {
+          display: inline-block;
+          width: 3px;
+          height: 1.1em;
+          background-color: var(--color-text-primary);
+          margin-left: 6px;
+          vertical-align: middle;
+          animation: cursorBlink 1s infinite;
+        }
+        .hero-description {
+          font-size: clamp(1.05rem, 1.3vw, 1.25rem);
+          color: var(--color-text-secondary);
+          line-height: 1.7;
+          margin-bottom: 2.8rem;
+          max-width: 650px;
+          width: 100%;
+        }
+        .hero-actions {
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          gap: 1.25rem;
+          flex-wrap: wrap;
+          width: 100%;
+        }
+        @media (max-width: 950px) {
+          .hero-grid {
+            grid-template-columns: 1fr;
+            text-align: center;
+            gap: 3rem;
+            margin-bottom: 3.5rem;
+          }
+          .hero-text-col {
+            align-items: center;
+            text-align: center;
+          }
+          .hero-typewriter-wrap {
+            justify-content: center;
+          }
+          .hero-actions {
+            justify-content: center;
+          }
+          .hero-description {
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+          }
+        }
         @keyframes cursorBlink {
           0%,
           100% {
@@ -390,3 +440,4 @@ export default function Hero() {
     </section>
   );
 }
+

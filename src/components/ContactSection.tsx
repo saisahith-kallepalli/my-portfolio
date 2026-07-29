@@ -8,6 +8,7 @@ export default function ContactSection() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phone: '',
     subject: '',
     message: '',
   });
@@ -46,6 +47,7 @@ export default function ContactSection() {
       setFormData({
         name: '',
         email: '',
+        phone: '',
         subject: '',
         message: '',
       });
@@ -301,100 +303,137 @@ export default function ContactSection() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-                <div>
-                  <label
-                    style={{
-                      display: 'block',
-                      fontSize: '0.85rem',
-                      fontWeight: 600,
-                      marginBottom: '0.5rem',
-                      color: 'var(--color-text-primary)',
-                    }}
-                  >
-                    Your Full Name *
-                  </label>
-                  <input
-                    type="text"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    placeholder="e.g. Marcus Vance"
-                    style={{
-                      width: '100%',
-                      padding: '0.85rem 1rem',
-                      borderRadius: '10px',
-                      background: 'var(--color-bg-subtle)',
-                      border: '1px solid var(--color-border)',
-                      color: 'var(--color-text-primary)',
-                      fontSize: '0.95rem',
-                      fontFamily: 'var(--font-sans)',
-                    }}
-                  />
+                {/* Row 1: Name & Email */}
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1.25rem' }}>
+                  <div>
+                    <label
+                      style={{
+                        display: 'block',
+                        fontSize: '0.85rem',
+                        fontWeight: 600,
+                        marginBottom: '0.5rem',
+                        color: 'var(--color-text-primary)',
+                      }}
+                    >
+                      Your Full Name *
+                    </label>
+                    <input
+                      type="text"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                      placeholder="e.g. Marcus Vance"
+                      style={{
+                        width: '100%',
+                        padding: '0.85rem 1rem',
+                        borderRadius: '10px',
+                        background: 'var(--color-bg-subtle)',
+                        border: '1px solid var(--color-border)',
+                        color: 'var(--color-text-primary)',
+                        fontSize: '0.95rem',
+                        fontFamily: 'var(--font-sans)',
+                      }}
+                    />
+                  </div>
+
+                  <div>
+                    <label
+                      style={{
+                        display: 'block',
+                        fontSize: '0.85rem',
+                        fontWeight: 600,
+                        marginBottom: '0.5rem',
+                        color: 'var(--color-text-primary)',
+                      }}
+                    >
+                      Email Address *
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                      placeholder="marcus@enterprise.com"
+                      style={{
+                        width: '100%',
+                        padding: '0.85rem 1rem',
+                        borderRadius: '10px',
+                        background: 'var(--color-bg-subtle)',
+                        border: '1px solid var(--color-border)',
+                        color: 'var(--color-text-primary)',
+                        fontSize: '0.95rem',
+                        fontFamily: 'var(--font-sans)',
+                      }}
+                    />
+                  </div>
                 </div>
 
-                <div>
-                  <label
-                    style={{
-                      display: 'block',
-                      fontSize: '0.85rem',
-                      fontWeight: 600,
-                      marginBottom: '0.5rem',
-                      color: 'var(--color-text-primary)',
-                    }}
-                  >
-                    Email Address *
-                  </label>
-                  <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    placeholder="marcus@enterprise.com"
-                    style={{
-                      width: '100%',
-                      padding: '0.85rem 1rem',
-                      borderRadius: '10px',
-                      background: 'var(--color-bg-subtle)',
-                      border: '1px solid var(--color-border)',
-                      color: 'var(--color-text-primary)',
-                      fontSize: '0.95rem',
-                      fontFamily: 'var(--font-sans)',
-                    }}
-                  />
-                </div>
+                {/* Row 2: Phone Number & Subject */}
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1.25rem' }}>
+                  <div>
+                    <label
+                      style={{
+                        display: 'block',
+                        fontSize: '0.85rem',
+                        fontWeight: 600,
+                        marginBottom: '0.5rem',
+                        color: 'var(--color-text-primary)',
+                      }}
+                    >
+                      Phone Number / WhatsApp
+                    </label>
+                    <input
+                      type="tel"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      placeholder="e.g. +91 63000 67347 or +1 (555) 000-0000"
+                      style={{
+                        width: '100%',
+                        padding: '0.85rem 1rem',
+                        borderRadius: '10px',
+                        background: 'var(--color-bg-subtle)',
+                        border: '1px solid var(--color-border)',
+                        color: 'var(--color-text-primary)',
+                        fontSize: '0.95rem',
+                        fontFamily: 'var(--font-sans)',
+                      }}
+                    />
+                  </div>
 
-                <div>
-                  <label
-                    style={{
-                      display: 'block',
-                      fontSize: '0.85rem',
-                      fontWeight: 600,
-                      marginBottom: '0.5rem',
-                      color: 'var(--color-text-primary)',
-                    }}
-                  >
-                    Subject *
-                  </label>
-                  <input
-                    type="text"
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleChange}
-                    required
-                    placeholder="e.g. MERN Full-Stack Consulting or Next.js Architecture"
-                    style={{
-                      width: '100%',
-                      padding: '0.85rem 1rem',
-                      borderRadius: '10px',
-                      background: 'var(--color-bg-subtle)',
-                      border: '1px solid var(--color-border)',
-                      color: 'var(--color-text-primary)',
-                      fontSize: '0.95rem',
-                      fontFamily: 'var(--font-sans)',
-                    }}
-                  />
+                  <div>
+                    <label
+                      style={{
+                        display: 'block',
+                        fontSize: '0.85rem',
+                        fontWeight: 600,
+                        marginBottom: '0.5rem',
+                        color: 'var(--color-text-primary)',
+                      }}
+                    >
+                      Subject *
+                    </label>
+                    <input
+                      type="text"
+                      name="subject"
+                      value={formData.subject}
+                      onChange={handleChange}
+                      required
+                      placeholder="e.g. MERN Consulting or Next.js Architecture"
+                      style={{
+                        width: '100%',
+                        padding: '0.85rem 1rem',
+                        borderRadius: '10px',
+                        background: 'var(--color-bg-subtle)',
+                        border: '1px solid var(--color-border)',
+                        color: 'var(--color-text-primary)',
+                        fontSize: '0.95rem',
+                        fontFamily: 'var(--font-sans)',
+                      }}
+                    />
+                  </div>
                 </div>
 
                 <div>

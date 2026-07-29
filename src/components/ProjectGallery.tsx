@@ -40,6 +40,7 @@ export default function ProjectGallery({
         </div>
 
         <div
+          className="section-header-row"
           style={{
             display: 'flex',
             alignItems: 'flex-end',
@@ -58,41 +59,22 @@ export default function ProjectGallery({
             </p>
           </div>
 
-          {/* Filter Tabs */}
-          <div
-            style={{
-              display: 'flex',
-              flexWrap: 'wrap',
-              gap: '0.6rem',
-              padding: '0.4rem',
-              background: 'var(--color-bg-subtle)',
-              borderRadius: '999px',
-              border: '1px solid var(--color-border)',
-            }}
-          >
-            {categories.map((cat) => (
-              <button
-                key={cat.value}
-                onClick={() => setActiveCategory(cat.value)}
-                style={{
-                  padding: '0.55rem 1.15rem',
-                  borderRadius: '999px',
-                  border: activeCategory === cat.value ? '1px solid var(--color-border)' : '1px solid transparent',
-                  background:
-                    activeCategory === cat.value
-                      ? 'var(--color-text-primary)'
-                      : 'transparent',
-                  color: activeCategory === cat.value ? 'var(--color-bg-primary)' : 'var(--color-text-secondary)',
-                  fontWeight: activeCategory === cat.value ? 700 : 500,
-                  fontSize: '0.85rem',
-                  cursor: 'pointer',
-                  transition: 'all 0.2s',
-                  fontFamily: 'var(--font-sans)',
-                }}
-              >
-                {cat.label}
-              </button>
-            ))}
+          {/* Filter Tabs - Mobile Responsive Swipeable Pill Bar */}
+          <div className="category-filter-bar" role="tablist" aria-label="Project Categories">
+            {categories.map((cat) => {
+              const isActive = activeCategory === cat.value;
+              return (
+                <button
+                  key={cat.value}
+                  onClick={() => setActiveCategory(cat.value)}
+                  className={`category-filter-btn ${isActive ? 'active' : ''}`}
+                  role="tab"
+                  aria-selected={isActive}
+                >
+                  {cat.label}
+                </button>
+              );
+            })}
           </div>
         </div>
 

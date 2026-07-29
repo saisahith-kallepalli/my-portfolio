@@ -41,6 +41,7 @@ export default function ShowreelSection({
         </div>
 
         <div
+          className="section-header-row"
           style={{
             display: "flex",
             alignItems: "flex-end",

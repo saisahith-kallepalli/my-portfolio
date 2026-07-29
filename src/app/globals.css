@@ -252,6 +252,28 @@ body {
   transform: translateY(-2px);
 }
 
+/* Hero Action Buttons - Responsive Gap & Stacking */
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+@media (max-width: 640px) {
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: 1rem;
+  }
+  .hero-actions a {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+}
+
 /* Badges & Tags (Monochrome White & Silver) */
 .badge {
   display: inline-flex;
@@ -552,3 +574,65 @@ html.light .badge-pink {
   border-color: var(--color-border);
 }
 
+/* Responsive Category Filter Bar for Mobile & Desktop */
+.category-filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem;
+  background: var(--color-bg-subtle);
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.category-filter-bar::-webkit-scrollbar {
+  display: none;
+}
+.category-filter-btn {
+  flex-shrink: 0;
+  white-space: nowrap;
+  padding: 0.55rem 1.2rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: var(--font-sans);
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--color-text-secondary);
+}
+.category-filter-btn:hover {
+  color: var(--color-text-primary);
+  background: var(--color-bg-subtle-hover);
+}
+.category-filter-btn.active {
+  background: var(--color-text-primary);
+  color: var(--color-bg-primary);
+  font-weight: 700;
+  border-color: var(--color-border);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+}
+
+@media (max-width: 768px) {
+  .category-filter-bar {
+    width: 100%;
+    padding: 0.35rem;
+    gap: 0.4rem;
+    border-radius: 999px;
+    justify-content: flex-start;
+  }
+  .category-filter-btn {
+    padding: 0.45rem 0.95rem;
+    font-size: 0.78rem;
+  }
+  .section-header-row {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 1.25rem !important;
+  }
+}
