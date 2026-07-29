@@ -5,6 +5,7 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Sphere, Html } from '@react-three/drei';
 import * as THREE from 'three';
 import { Skill } from '@/lib/types';
+import { useTheme } from 'next-themes';
 
 interface SkillGlobeCanvasProps {
   skills: Skill[];
@@ -35,30 +36,29 @@ function OrbitingSkillNode({ skill, index, total, isSelected, onSelect }: Orbiti
   const groupRef = useRef<THREE.Group>(null!);
   const [hovered, setHovered] = useState(false);
 
-  // 30% larger orbital radius (4.2 instead of 3.2)
-  const basePosition = useMemo(() => getSphericalPosition(index, total, 4.2), [index, total]);
+  // Scaled base radius by 30% (from 2.7 to 3.5)
+  const basePosition = useMemo(() => getSphericalPosition(index, total, 3.5), [index, total]);
 
-  // Animate node floating slightly around its orbit
+  // Orbit animation using useFrame
   useFrame((state) => {
     if (!groupRef.current) return;
-    const t = state.clock.getElapsedTime() + index * 1.5;
-    groupRef.current.position.x = basePosition[0] + Math.sin(t * 0.5) * 0.18;
-    groupRef.current.position.y = basePosition[1] + Math.cos(t * 0.6) * 0.18;
-    groupRef.current.position.z = basePosition[2] + Math.sin(t * 0.4) * 0.18;
+    const t = state.clock.getElapsedTime() * 0.22 + index * 0.8;
+    const yOffset = Math.sin(t) * 0.2;
+    groupRef.current.position.y = basePosition[1] + yOffset;
   });
 
   return (
     <group ref={groupRef} position={basePosition}>
-      {/* Small glowing 3D anchor sphere */}
+      {/* Small 3D anchor sphere - Monochrome unless highlighted */}
       <mesh onClick={onSelect} onPointerOver={() => setHovered(true)} onPointerOut={() => setHovered(false)}>
         <sphereGeometry args={[0.15, 16, 16]} />
         <meshBasicMaterial
-          color={isSelected ? '#00f2fe' : hovered ? '#7f00ff' : '#4facfe'}
+          color={isSelected ? '#ffffff' : hovered ? '#e0e0e0' : '#606575'}
           wireframe={false}
         />
       </mesh>
 
-      {/* HTML 3D Interactive Badge (30% larger typography and padding) */}
+      {/* HTML 3D Interactive Badge (100% Black & White Monochrome - Dark/Light aware) */}
       <Html
         center
         distanceFactor={8.5}
@@ -78,24 +78,24 @@ function OrbitingSkillNode({ skill, index, total, isSelected, onSelect }: Orbiti
             padding: isSelected ? '0.65rem 1.3rem' : '0.55rem 1.1rem',
             borderRadius: '999px',
             border: isSelected
-              ? '2px solid #00f2fe'
+              ? '2px solid var(--color-text-primary)'
               : hovered
-              ? '1.5px solid #7f00ff'
-              : '1px solid rgba(255,255,255,0.2)',
+              ? '1.5px solid var(--color-text-primary)'
+              : '1px solid var(--color-border)',
             background: isSelected
-              ? 'linear-gradient(135deg, rgba(0, 242, 254, 0.9) 0%, rgba(127, 0, 255, 0.9) 100%)'
+              ? 'var(--color-text-primary)'
               : hovered
-              ? 'rgba(22, 25, 38, 0.95)'
-              : 'rgba(11, 12, 16, 0.85)',
-            color: isSelected ? '#0b0c10' : '#ffffff',
+              ? 'var(--color-bg-card-hover)'
+              : 'var(--color-bg-card)',
+            color: isSelected ? 'var(--color-bg-primary)' : 'var(--color-text-primary)',
             fontWeight: isSelected || hovered ? 800 : 600,
             fontSize: isSelected ? '1.05rem' : hovered ? '1rem' : '0.9rem',
             whiteSpace: 'nowrap',
             boxShadow: isSelected
-              ? '0 0 30px rgba(0, 242, 254, 0.8)'
+              ? '0 0 30px rgba(128, 128, 128, 0.4)'
               : hovered
-              ? '0 0 20px rgba(127, 0, 255, 0.6)'
-              : '0 6px 18px rgba(0,0,0,0.5)',
+              ? '0 0 18px rgba(128, 128, 128, 0.2)'
+              : '0 6px 18px rgba(0, 0, 0, 0.15)',
             transform: isSelected ? 'scale(1.15)' : hovered ? 'scale(1.1)' : 'scale(1)',
             transition: 'all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
             display: 'flex',
@@ -109,7 +109,7 @@ function OrbitingSkillNode({ skill, index, total, isSelected, onSelect }: Orbiti
               width: '10px',
               height: '10px',
               borderRadius: '50%',
-              backgroundColor: isSelected ? '#0b0c10' : '#00f2fe',
+              backgroundColor: isSelected ? 'var(--color-bg-primary)' : hovered ? 'var(--color-text-primary)' : 'var(--color-text-muted)',
               display: 'inline-block',
             }}
           />
@@ -122,6 +122,8 @@ function OrbitingSkillNode({ skill, index, total, isSelected, onSelect }: Orbiti
 
 function RotatingGlobeScene({ skills, selectedSkillId, onSelectSkill }: SkillGlobeCanvasProps) {
   const globeRef = useRef<THREE.Group>(null!);
+  const { resolvedTheme } = useTheme();
+  const isLight = resolvedTheme === 'light';
 
   // Smoothly rotate the whole globe assembly
   useFrame((state, delta) => {
@@ -132,28 +134,28 @@ function RotatingGlobeScene({ skills, selectedSkillId, onSelectSkill }: SkillGlo
 
   return (
     <group ref={globeRef}>
-      {/* 30% larger Central Translucent Glass Globe (2.75 radius) */}
+      {/* Sleek Obsidian Glass Globe (Monochrome) */}
       <Sphere args={[2.75, 48, 48]}>
         <meshPhysicalMaterial
-          color="#12141d"
-          emissive="#00f2fe"
-          emissiveIntensity={0.14}
+          color={isLight ? '#ffffff' : '#101216'}
+          emissive={isLight ? '#202020' : '#ffffff'}
+          emissiveIntensity={isLight ? 0.08 : 0.06}
           roughness={0.25}
-          metalness={0.8}
+          metalness={isLight ? 0.1 : 0.9}
           transparent
-          opacity={0.78}
+          opacity={isLight ? 0.85 : 0.78}
           wireframe={false}
         />
       </Sphere>
 
-      {/* 30% larger Neon Cyber Wireframe Overlay Sphere (2.8 radius) */}
+      {/* Silver/White Outer Wireframe Overlay Sphere */}
       <Sphere args={[2.8, 24, 24]}>
-        <meshBasicMaterial color="#00f2fe" wireframe transparent opacity={0.16} />
+        <meshBasicMaterial color={isLight ? '#0a0b0d' : '#ffffff'} wireframe transparent opacity={0.12} />
       </Sphere>
 
-      {/* 30% larger Inner Violet Glowing Core Sphere (1.7 radius) */}
+      {/* Silver/White Inner Core Sphere */}
       <Sphere args={[1.7, 32, 32]}>
-        <meshBasicMaterial color="#7f00ff" wireframe transparent opacity={0.22} />
+        <meshBasicMaterial color={isLight ? '#0a0b0d' : '#ffffff'} wireframe transparent opacity={0.08} />
       </Sphere>
 
       {/* Orbiting Skill Nodes */}
@@ -193,9 +195,9 @@ export default function SkillGlobeCanvas({
         gl={{ antialias: true, alpha: true }}
         dpr={[1, 2]}
       >
-        <ambientLight intensity={0.85} />
-        <directionalLight position={[10, 10, 5]} intensity={1.6} color="#00f2fe" />
-        <pointLight position={[-10, -10, -5]} intensity={1.6} color="#7f00ff" />
+        <ambientLight intensity={0.9} />
+        <directionalLight position={[10, 10, 5]} intensity={1.6} color="#ffffff" />
+        <pointLight position={[-10, -10, -5]} intensity={1.4} color="#e0e0e0" />
 
         <RotatingGlobeScene
           skills={skills}

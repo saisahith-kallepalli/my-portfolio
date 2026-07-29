@@ -61,13 +61,13 @@ export default function SkillsSection({ skills }: SkillsSectionProps) {
             </p>
           </div>
 
-          {/* Category Tabs */}
+          {/* Category Tabs - Clean Monochrome */}
           <div
             style={{
               display: 'flex',
               flexWrap: 'wrap',
               gap: '0.5rem',
-              background: 'var(--color-bg-surface)',
+              background: 'var(--color-bg-subtle)',
               padding: '0.4rem',
               borderRadius: '999px',
               border: '1px solid var(--color-border)',
@@ -94,8 +94,8 @@ export default function SkillsSection({ skills }: SkillsSectionProps) {
                     fontSize: '0.85rem',
                     fontWeight: 600,
                     cursor: 'pointer',
-                    background: isActive ? 'var(--color-accent-cyan)' : 'transparent',
-                    color: isActive ? '#0b0c10' : 'var(--color-text-secondary)',
+                    background: isActive ? 'var(--color-text-primary)' : 'transparent',
+                    color: isActive ? 'var(--color-bg-primary)' : 'var(--color-text-secondary)',
                     border: 'none',
                     transition: 'all 0.25s ease',
                   }}
@@ -107,7 +107,7 @@ export default function SkillsSection({ skills }: SkillsSectionProps) {
           </div>
         </div>
 
-        {/* 3D Rotating Globe Animation with Orbiting Skill Badges */}
+        {/* Free-Floating 3D Rotating Globe Animation */}
         <div style={{ marginBottom: '3.5rem' }}>
           <SkillGlobeCanvas
             skills={filteredSkills}
@@ -116,7 +116,7 @@ export default function SkillsSection({ skills }: SkillsSectionProps) {
           />
         </div>
 
-        {/* Interactive Engineering Skills Matrix Boxes */}
+        {/* Interactive Engineering Skills Matrix Boxes (Monochrome by default) */}
         <div
           style={{
             display: 'grid',
@@ -132,6 +132,7 @@ export default function SkillsSection({ skills }: SkillsSectionProps) {
               <motion.div
                 key={skill.id}
                 onClick={() => setSelectedSkill(skill)}
+                onMouseEnter={() => setSelectedSkill(skill)}
                 whileHover={{ scale: 1.05, y: -5 }}
                 whileTap={{ scale: 1.02 }}
                 className="glass-card"
@@ -143,14 +144,14 @@ export default function SkillsSection({ skills }: SkillsSectionProps) {
                   flexDirection: 'column',
                   gap: '1rem',
                   background: isSelected
-                    ? 'linear-gradient(135deg, rgba(0, 242, 254, 0.16) 0%, rgba(127, 0, 255, 0.2) 100%)'
+                    ? 'var(--color-bg-card-hover)'
                     : 'var(--color-bg-card)',
                   border: isSelected
-                    ? '2px solid var(--color-accent-cyan)'
+                    ? '2px solid var(--color-text-primary)'
                     : '1px solid var(--color-border)',
                   boxShadow: isSelected
-                    ? '0 0 35px rgba(0, 242, 254, 0.35)'
-                    : '0 8px 30px rgba(0, 0, 0, 0.3)',
+                    ? '0 0 35px var(--color-border-glow)'
+                    : 'var(--shadow-glass)',
                   transition: 'background 0.25s, border-color 0.25s, box-shadow 0.25s',
                 }}
               >
@@ -173,12 +174,12 @@ export default function SkillsSection({ skills }: SkillsSectionProps) {
                         width: '40px',
                         height: '40px',
                         borderRadius: '10px',
-                        background: isSelected ? 'rgba(0, 242, 254, 0.2)' : 'rgba(0, 242, 254, 0.1)',
-                        border: '1px solid rgba(0, 242, 254, 0.25)',
+                        background: isSelected ? 'var(--color-text-primary)' : 'var(--color-bg-subtle)',
+                        border: '1px solid var(--color-border)',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        color: 'var(--color-accent-cyan)',
+                        color: isSelected ? 'var(--color-bg-primary)' : 'var(--color-text-primary)',
                       }}
                     >
                       <Terminal size={19} />
@@ -188,10 +189,10 @@ export default function SkillsSection({ skills }: SkillsSectionProps) {
                         style={{
                           fontSize: isSelected ? '1.2rem' : '1.1rem',
                           fontWeight: 800,
-                          color: '#fff',
+                          color: 'var(--color-text-primary)',
                           marginBottom: '0.15rem',
                           transition: 'font-size 0.2s ease',
-                          textShadow: isSelected ? '0 0 12px rgba(0, 242, 254, 0.5)' : 'none',
+                          textShadow: isSelected ? '0 0 12px rgba(255, 255, 255, 0.5)' : 'none',
                         }}
                       >
                         {skill.name}
@@ -199,7 +200,7 @@ export default function SkillsSection({ skills }: SkillsSectionProps) {
                       <span
                         style={{
                           fontSize: '0.75rem',
-                          color: isSelected ? '#00f2fe' : 'var(--color-text-muted)',
+                          color: isSelected ? 'var(--color-text-primary)' : 'var(--color-text-muted)',
                           textTransform: 'uppercase',
                           fontFamily: 'var(--font-mono)',
                           fontWeight: 700,
@@ -214,7 +215,7 @@ export default function SkillsSection({ skills }: SkillsSectionProps) {
                     style={{
                       fontSize: '1.15rem',
                       fontWeight: 800,
-                      color: isSelected ? '#00f2fe' : 'var(--color-accent-cyan)',
+                      color: 'var(--color-text-primary)',
                       fontFamily: 'var(--font-mono)',
                     }}
                   >
@@ -227,7 +228,7 @@ export default function SkillsSection({ skills }: SkillsSectionProps) {
                   style={{
                     width: '100%',
                     height: '7px',
-                    background: 'rgba(255, 255, 255, 0.08)',
+                    background: 'var(--color-bg-subtle)',
                     borderRadius: '999px',
                     overflow: 'hidden',
                   }}
@@ -237,15 +238,15 @@ export default function SkillsSection({ skills }: SkillsSectionProps) {
                       width: `${skill.level}%`,
                       height: '100%',
                       background: isSelected
-                        ? 'linear-gradient(90deg, #00f2fe, #fff)'
-                        : 'linear-gradient(90deg, var(--color-accent-cyan), var(--color-accent-violet))',
+                        ? 'var(--color-text-primary)'
+                        : 'var(--color-text-secondary)',
                       borderRadius: '999px',
                       transition: 'width 1s cubic-bezier(0.4, 0, 0.2, 1)',
                     }}
                   />
                 </div>
 
-                {/* Highlight text inside Engineering Skills Matrix box */}
+                {/* Highlight tag inside Engineering Skills Matrix box */}
                 {skill.highlight && (
                   <div
                     style={{
@@ -253,15 +254,15 @@ export default function SkillsSection({ skills }: SkillsSectionProps) {
                       alignItems: 'center',
                       gap: '0.5rem',
                       fontSize: '0.82rem',
-                      color: isSelected ? '#ffffff' : 'var(--color-text-secondary)',
+                      color: isSelected ? 'var(--color-text-primary)' : 'var(--color-text-secondary)',
                       fontWeight: 600,
-                      background: isSelected ? 'rgba(0, 242, 254, 0.12)' : 'rgba(255, 255, 255, 0.03)',
+                      background: isSelected ? 'var(--color-bg-subtle-hover)' : 'var(--color-bg-subtle)',
                       padding: '0.45rem 0.75rem',
                       borderRadius: '8px',
-                      border: '1px solid rgba(255, 255, 255, 0.05)',
+                      border: '1px solid var(--color-border)',
                     }}
                   >
-                    <CheckCircle2 size={15} color="var(--color-accent-cyan)" />
+                    <CheckCircle2 size={15} />
                     <span>{skill.highlight}</span>
                   </div>
                 )}
@@ -283,9 +284,9 @@ export default function SkillsSection({ skills }: SkillsSectionProps) {
               style={{
                 padding: '2.5rem',
                 borderRadius: '24px',
-                background: 'linear-gradient(135deg, rgba(22, 25, 38, 0.85) 0%, rgba(11, 12, 16, 0.95) 100%)',
-                border: '1px solid var(--color-border-glow)',
-                boxShadow: '0 0 45px rgba(0, 242, 254, 0.2)',
+                background: 'var(--color-bg-card)',
+                border: '1px solid var(--color-border)',
+                boxShadow: 'var(--shadow-glass)',
               }}
             >
               <div
@@ -316,7 +317,7 @@ export default function SkillsSection({ skills }: SkillsSectionProps) {
                     style={{
                       fontSize: 'clamp(1.6rem, 3vw, 2.2rem)',
                       fontWeight: 800,
-                      color: '#ffffff',
+                      color: 'var(--color-text-primary)',
                       margin: '0.3rem 0 0',
                     }}
                   >
@@ -331,11 +332,11 @@ export default function SkillsSection({ skills }: SkillsSectionProps) {
                     gap: '0.8rem',
                   }}
                 >
-                  <span className="badge" style={{ backgroundColor: 'rgba(0, 242, 254, 0.12)' }}>
+                  <span className="badge">
                     <Award size={14} />
                     {selectedSkill.experienceYears} Experience
                   </span>
-                  <span className="badge" style={{ backgroundColor: 'rgba(127, 0, 255, 0.15)' }}>
+                  <span className="badge">
                     Proficiency: {selectedSkill.level}%
                   </span>
                 </div>
@@ -344,12 +345,12 @@ export default function SkillsSection({ skills }: SkillsSectionProps) {
               <p
                 style={{
                   fontSize: '1.1rem',
-                  color: '#e0e0e0',
+                  color: 'var(--color-text-secondary)',
                   lineHeight: 1.7,
                   marginBottom: '1.8rem',
                 }}
               >
-                Demonstrated senior engineering proficiency in <strong style={{ color: '#fff' }}>{selectedSkill.name}</strong> ({selectedSkill.category.toUpperCase()}). Applied across enterprise MERN stacks, microservices, SSR/SSG caching, and high-concurrency client applications.
+                Demonstrated senior engineering proficiency in <strong style={{ color: 'var(--color-text-primary)' }}>{selectedSkill.name}</strong> ({selectedSkill.category.toUpperCase()}). Applied across enterprise MERN stacks, microservices, SSR/SSG caching, and high-concurrency client applications.
               </p>
 
               {selectedSkill.highlight && (

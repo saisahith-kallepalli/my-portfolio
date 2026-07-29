@@ -112,7 +112,7 @@ export default function ExperienceSection({ experience }: ExperienceSectionProps
                         )}
                         {item.period}
                       </span>
-                      <h3 style={{ fontSize: '1.4rem', fontWeight: 700, color: '#fff' }}>
+                      <h3 style={{ fontSize: '1.4rem', fontWeight: 700, color: 'var(--color-text-primary)' }}>
                         {item.role}
                       </h3>
                       <div style={{ color: 'var(--color-accent-cyan)', fontWeight: 600 }}>
@@ -122,9 +122,9 @@ export default function ExperienceSection({ experience }: ExperienceSectionProps
 
                     <button
                       style={{
-                        background: 'rgba(255,255,255,0.05)',
+                        background: 'var(--color-bg-subtle)',
                         border: '1px solid var(--color-border)',
-                        color: '#fff',
+                        color: 'var(--color-text-primary)',
                         padding: '0.5rem',
                         borderRadius: '8px',
                         cursor: 'pointer',
@@ -183,7 +183,7 @@ export default function ExperienceSection({ experience }: ExperienceSectionProps
                             style={{
                               fontSize: '0.78rem',
                               color: 'var(--color-text-secondary)',
-                              background: 'rgba(255,255,255,0.05)',
+                              background: 'var(--color-bg-subtle)',
                               border: '1px solid var(--color-border)',
                               padding: '0.25rem 0.75rem',
                               borderRadius: '6px',

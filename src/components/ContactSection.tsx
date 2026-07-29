@@ -8,8 +8,7 @@ export default function ContactSection() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    projectType: 'Senior Full Stack MERN Engineering',
-    budget: '$10k - $25k+',
+    subject: '',
     message: '',
   });
 
@@ -47,8 +46,7 @@ export default function ContactSection() {
       setFormData({
         name: '',
         email: '',
-        projectType: 'Senior Full Stack MERN Engineering',
-        budget: '$10k - $25k+',
+        subject: '',
         message: '',
       });
     } catch (err: unknown) {
@@ -80,7 +78,7 @@ export default function ContactSection() {
           {/* Left Column: Direct Profile Details */}
           <div>
             <div className="glass-card" style={{ padding: '2.5rem', marginBottom: '2rem' }}>
-              <h3 style={{ fontSize: '1.5rem', fontWeight: 700, color: '#fff', marginBottom: '1.5rem' }}>
+              <h3 style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--color-text-primary)', marginBottom: '1.5rem' }}>
                 Direct Contact Information
               </h3>
 
@@ -92,7 +90,7 @@ export default function ContactSection() {
                     alignItems: 'center',
                     gap: '1rem',
                     textDecoration: 'none',
-                    color: '#fff',
+                    color: 'var(--color-text-primary)',
                   }}
                 >
                   <div
@@ -100,12 +98,12 @@ export default function ContactSection() {
                       width: '44px',
                       height: '44px',
                       borderRadius: '12px',
-                      background: 'rgba(0, 242, 254, 0.12)',
-                      border: '1px solid rgba(0, 242, 254, 0.25)',
+                      background: 'var(--color-bg-subtle)',
+                      border: '1px solid var(--color-border)',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      color: 'var(--color-accent-cyan)',
+                      color: 'var(--color-text-primary)',
                     }}
                   >
                     <Mail size={20} />
@@ -127,7 +125,7 @@ export default function ContactSection() {
                     alignItems: 'center',
                     gap: '1rem',
                     textDecoration: 'none',
-                    color: '#fff',
+                    color: 'var(--color-text-primary)',
                   }}
                 >
                   <div
@@ -135,12 +133,12 @@ export default function ContactSection() {
                       width: '44px',
                       height: '44px',
                       borderRadius: '12px',
-                      background: 'rgba(127, 0, 255, 0.12)',
-                      border: '1px solid rgba(127, 0, 255, 0.25)',
+                      background: 'var(--color-bg-subtle)',
+                      border: '1px solid var(--color-border)',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      color: '#d1a3ff',
+                      color: 'var(--color-text-primary)',
                     }}
                   >
                     <Phone size={20} />
@@ -160,7 +158,7 @@ export default function ContactSection() {
                     display: 'flex',
                     alignItems: 'center',
                     gap: '1rem',
-                    color: '#fff',
+                    color: 'var(--color-text-primary)',
                   }}
                 >
                   <div
@@ -168,7 +166,7 @@ export default function ContactSection() {
                       width: '44px',
                       height: '44px',
                       borderRadius: '12px',
-                      background: 'rgba(255, 255, 255, 0.05)',
+                      background: 'var(--color-bg-subtle)',
                       border: '1px solid var(--color-border)',
                       display: 'flex',
                       alignItems: 'center',
@@ -255,29 +253,39 @@ export default function ContactSection() {
 
           {/* Right Column: Interactive Inquiry Form */}
           <div className="glass-card" style={{ padding: '2.5rem' }}>
-            <h3 style={{ fontSize: '1.6rem', fontWeight: 700, color: '#fff', marginBottom: '0.5rem' }}>
+            <h3 style={{ fontSize: '1.6rem', fontWeight: 700, color: 'var(--color-text-primary)', marginBottom: '0.5rem' }}>
               Send Me a Message
             </h3>
-            <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.92rem', marginBottom: '2rem' }}>
-              Have a project in mind, a full-time opportunity, or just want to connect? Send a message and I&rsquo;ll respond within 24 hours.
+            <p style={{ color: 'var(--color-text-secondary)', marginBottom: '2rem', fontSize: '0.95rem' }}>
+              Fill out the brief inquiry form below, and let&rsquo;s discuss your engineering timeline and deliverables.
             </p>
 
             {status === 'success' ? (
               <div
                 style={{
-                  background: 'rgba(0, 242, 254, 0.1)',
-                  border: '1px solid var(--color-accent-cyan)',
-                  borderRadius: '16px',
-                  padding: '2.5rem',
+                  padding: '3rem 2rem',
                   textAlign: 'center',
+                  background: 'var(--color-bg-subtle)',
+                  borderRadius: '16px',
+                  border: '1px solid var(--color-border)',
                 }}
               >
-                <CheckCircle2
-                  size={52}
-                  color="var(--color-accent-cyan)"
-                  style={{ margin: '0 auto 1rem' }}
-                />
-                <h4 style={{ fontSize: '1.4rem', fontWeight: 700, color: '#fff', marginBottom: '0.5rem' }}>
+                <div
+                  style={{
+                    width: '60px',
+                    height: '60px',
+                    borderRadius: '50%',
+                    background: 'var(--color-bg-subtle)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    margin: '0 auto 1.5rem',
+                    color: 'var(--color-text-primary)',
+                  }}
+                >
+                  <Send size={26} />
+                </div>
+                <h4 style={{ fontSize: '1.4rem', fontWeight: 700, color: 'var(--color-text-primary)', marginBottom: '0.5rem' }}>
                   Message Sent Successfully!
                 </h4>
                 <p style={{ color: 'var(--color-text-secondary)', marginBottom: '1.5rem' }}>
@@ -300,7 +308,7 @@ export default function ContactSection() {
                       fontSize: '0.85rem',
                       fontWeight: 600,
                       marginBottom: '0.5rem',
-                      color: '#fff',
+                      color: 'var(--color-text-primary)',
                     }}
                   >
                     Your Full Name *
@@ -316,9 +324,9 @@ export default function ContactSection() {
                       width: '100%',
                       padding: '0.85rem 1rem',
                       borderRadius: '10px',
-                      background: 'rgba(0,0,0,0.3)',
+                      background: 'var(--color-bg-subtle)',
                       border: '1px solid var(--color-border)',
-                      color: '#fff',
+                      color: 'var(--color-text-primary)',
                       fontSize: '0.95rem',
                       fontFamily: 'var(--font-sans)',
                     }}
@@ -332,7 +340,7 @@ export default function ContactSection() {
                       fontSize: '0.85rem',
                       fontWeight: 600,
                       marginBottom: '0.5rem',
-                      color: '#fff',
+                      color: 'var(--color-text-primary)',
                     }}
                   >
                     Email Address *
@@ -348,83 +356,13 @@ export default function ContactSection() {
                       width: '100%',
                       padding: '0.85rem 1rem',
                       borderRadius: '10px',
-                      background: 'rgba(0,0,0,0.3)',
+                      background: 'var(--color-bg-subtle)',
                       border: '1px solid var(--color-border)',
-                      color: '#fff',
+                      color: 'var(--color-text-primary)',
                       fontSize: '0.95rem',
                       fontFamily: 'var(--font-sans)',
                     }}
                   />
-                </div>
-
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-                  <div>
-                    <label
-                      style={{
-                        display: 'block',
-                        fontSize: '0.85rem',
-                        fontWeight: 600,
-                        marginBottom: '0.5rem',
-                        color: '#fff',
-                      }}
-                    >
-                      Project Focus
-                    </label>
-                    <select
-                      name="projectType"
-                      value={formData.projectType}
-                      onChange={handleChange}
-                      style={{
-                        width: '100%',
-                        padding: '0.85rem 1rem',
-                        borderRadius: '10px',
-                        background: 'rgba(0,0,0,0.5)',
-                        border: '1px solid var(--color-border)',
-                        color: '#fff',
-                        fontSize: '0.9rem',
-                        fontFamily: 'var(--font-sans)',
-                      }}
-                    >
-                      <option value="Senior Full Stack MERN Engineering">Senior Full Stack MERN Engineering</option>
-                      <option value="Next.js SSR/SSG Enterprise Application">Next.js SSR/SSG Enterprise Application</option>
-                      <option value="Frontend Architecture & Design System">Frontend Architecture &amp; Design System</option>
-                      <option value="Technical & Performance Consultation">Technical &amp; Performance Consultation</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label
-                      style={{
-                        display: 'block',
-                        fontSize: '0.85rem',
-                        fontWeight: 600,
-                        marginBottom: '0.5rem',
-                        color: '#fff',
-                      }}
-                    >
-                      Budget Range
-                    </label>
-                    <select
-                      name="budget"
-                      value={formData.budget}
-                      onChange={handleChange}
-                      style={{
-                        width: '100%',
-                        padding: '0.85rem 1rem',
-                        borderRadius: '10px',
-                        background: 'rgba(0,0,0,0.5)',
-                        border: '1px solid var(--color-border)',
-                        color: '#fff',
-                        fontSize: '0.9rem',
-                        fontFamily: 'var(--font-sans)',
-                      }}
-                    >
-                      <option value="$10k - $25k+">$10k - $25k+</option>
-                      <option value="$25k - $50k+">$25k - $50k+</option>
-                      <option value="Enterprise Custom">Enterprise Custom</option>
-                      <option value="Flexible / Hourly">Flexible / Hourly</option>
-                    </select>
-                  </div>
                 </div>
 
                 <div>
@@ -434,7 +372,39 @@ export default function ContactSection() {
                       fontSize: '0.85rem',
                       fontWeight: 600,
                       marginBottom: '0.5rem',
-                      color: '#fff',
+                      color: 'var(--color-text-primary)',
+                    }}
+                  >
+                    Subject *
+                  </label>
+                  <input
+                    type="text"
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleChange}
+                    required
+                    placeholder="e.g. MERN Full-Stack Consulting or Next.js Architecture"
+                    style={{
+                      width: '100%',
+                      padding: '0.85rem 1rem',
+                      borderRadius: '10px',
+                      background: 'var(--color-bg-subtle)',
+                      border: '1px solid var(--color-border)',
+                      color: 'var(--color-text-primary)',
+                      fontSize: '0.95rem',
+                      fontFamily: 'var(--font-sans)',
+                    }}
+                  />
+                </div>
+
+                <div>
+                  <label
+                    style={{
+                      display: 'block',
+                      fontSize: '0.85rem',
+                      fontWeight: 600,
+                      marginBottom: '0.5rem',
+                      color: 'var(--color-text-primary)',
                     }}
                   >
                     Project Details or Role Summary *
@@ -450,9 +420,9 @@ export default function ContactSection() {
                       width: '100%',
                       padding: '0.85rem 1rem',
                       borderRadius: '10px',
-                      background: 'rgba(0,0,0,0.3)',
+                      background: 'var(--color-bg-subtle)',
                       border: '1px solid var(--color-border)',
-                      color: '#fff',
+                      color: 'var(--color-text-primary)',
                       fontSize: '0.95rem',
                       fontFamily: 'var(--font-sans)',
                       resize: 'vertical',

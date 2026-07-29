@@ -3,13 +3,15 @@ import nodemailer from 'nodemailer';
 export interface EmailInquiryPayload {
   name: string;
   email: string;
-  projectType: string;
-  budget: string;
+  subject?: string;
+  projectType?: string;
+  budget?: string;
   message: string;
 }
 
 export async function sendInquiryEmail(payload: EmailInquiryPayload): Promise<boolean> {
-  const { name, email, projectType, budget, message } = payload;
+  const { name, email, subject, projectType, budget, message } = payload;
+  const displaySubject = subject || projectType || 'General Inquiry';
 
   const smtpHost = process.env.SMTP_HOST || 'smtp.gmail.com';
   const smtpPort = Number(process.env.SMTP_PORT || 465);
@@ -25,7 +27,7 @@ export async function sendInquiryEmail(payload: EmailInquiryPayload): Promise<bo
           NEW PORTFOLIO INQUIRY
         </h2>
         <p style="margin: 6px 0 0; color: #0b0c10; font-size: 14px; font-weight: 600;">
-          Kallepalli Sai Sahith — Senior Full Stack Software Engineer
+          KALLEPALLI Sai Sahith — Senior Full Stack Software Engineer
         </p>
       </div>
 
@@ -45,12 +47,12 @@ export async function sendInquiryEmail(payload: EmailInquiryPayload): Promise<bo
               <td style="padding: 8px 0; color: #00f2fe; font-size: 15px; font-weight: 600;"><a href="mailto:${email}" style="color: #00f2fe; text-decoration: none;">${email}</a></td>
             </tr>
             <tr>
-              <td style="padding: 8px 0; color: #8892b0; font-size: 13px; font-weight: 600; text-transform: uppercase;">Project Focus:</td>
-              <td style="padding: 8px 0; color: #ffffff; font-size: 15px;">${projectType}</td>
+              <td style="padding: 8px 0; color: #8892b0; font-size: 13px; font-weight: 600; text-transform: uppercase;">Subject:</td>
+              <td style="padding: 8px 0; color: #ffffff; font-size: 15px;">${displaySubject}</td>
             </tr>
             <tr>
               <td style="padding: 8px 0; color: #8892b0; font-size: 13px; font-weight: 600; text-transform: uppercase;">Budget Range:</td>
-              <td style="padding: 8px 0; color: #ffffff; font-size: 15px; font-weight: 600;">${budget}</td>
+              <td style="padding: 8px 0; color: #ffffff; font-size: 15px; font-weight: 600;">${budget || 'N/A'}</td>
             </tr>
           </table>
         </div>
@@ -61,14 +63,14 @@ export async function sendInquiryEmail(payload: EmailInquiryPayload): Promise<bo
         <div style="background-color: rgba(255,255,255,0.03); border: 1px solid #1f2833; padding: 18px; border-radius: 8px; color: #e0e0e0; font-size: 15px; line-height: 1.6; white-space: pre-wrap;">${message}</div>
 
         <div style="margin-top: 28px; text-align: center;">
-          <a href="mailto:${email}?subject=Re: Your Inquiry to Kallepalli Sai Sahith" style="display: inline-block; background: linear-gradient(135deg, #00f2fe, #7f00ff); color: #0b0c10; font-weight: 700; text-decoration: none; padding: 12px 28px; border-radius: 999px; font-size: 14px;">
+          <a href="mailto:${email}?subject=Re: Your Inquiry to KALLEPALLI Sai Sahith" style="display: inline-block; background: linear-gradient(135deg, #00f2fe, #7f00ff); color: #0b0c10; font-weight: 700; text-decoration: none; padding: 12px 28px; border-radius: 999px; font-size: 14px;">
             Reply Directly to ${name}
           </a>
         </div>
       </div>
 
       <div style="background-color: #07080a; padding: 16px; text-align: center; border-top: 1px solid #1f2833; font-size: 12px; color: #8892b0;">
-        &copy; ${new Date().getFullYear()} Kallepalli Sai Sahith. Automated Portfolio Notification System.
+        &copy; ${new Date().getFullYear()} KALLEPALLI Sai Sahith. Automated Portfolio Notification System.
       </div>
     </div>
   `;
@@ -107,9 +109,9 @@ export async function sendInquiryEmail(payload: EmailInquiryPayload): Promise<bo
       from: `"Sai Sahith Portfolio" <${smtpUser}>`,
       to: recipientEmail,
       replyTo: email,
-      subject: `[Portfolio Contact] New Message from ${name} (${projectType})`,
+      subject: `[Portfolio Contact] New Message from ${name}: ${displaySubject}`,
       html: htmlContent,
-      text: `New Portfolio Inquiry from ${name} (${email})\nProject: ${projectType} (${budget})\n\nMessage:\n${message}`,
+      text: `New Portfolio Inquiry from ${name} (${email})\nSubject: ${displaySubject}\n\nMessage:\n${message}`,
     });
 
     console.log(`✅ [MAIL SUCCESS] Email sent to ${recipientEmail} from ${email}`);

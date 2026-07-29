@@ -82,12 +82,12 @@ export default function TestimonialsBlogSection({
               style={{
                 padding: '0.65rem 1.4rem',
                 borderRadius: '999px',
-                border: 'none',
+                border: activeTab === 'blog' ? '1px solid var(--color-border)' : '1px solid transparent',
                 background:
                   activeTab === 'blog'
-                    ? 'linear-gradient(135deg, var(--color-accent-cyan), var(--color-accent-violet))'
+                    ? 'var(--color-text-primary)'
                     : 'transparent',
-                color: activeTab === 'blog' ? '#0b0c10' : 'var(--color-text-secondary)',
+                color: activeTab === 'blog' ? 'var(--color-bg-primary)' : 'var(--color-text-secondary)',
                 fontWeight: activeTab === 'blog' ? 700 : 500,
                 fontSize: '0.9rem',
                 cursor: 'pointer',
@@ -141,12 +141,12 @@ export default function TestimonialsBlogSection({
                         />
                       ))}
                     </div>
-                    <Quote size={28} color="rgba(255,255,255,0.15)" />
+                    <Quote size={28} color="var(--color-border)" />
                   </div>
 
                   <p
                     style={{
-                      color: '#fff',
+                      color: 'var(--color-text-primary)',
                       fontSize: '1.02rem',
                       lineHeight: 1.65,
                       fontStyle: 'italic',
@@ -178,7 +178,7 @@ export default function TestimonialsBlogSection({
                     }}
                   />
                   <div>
-                    <div style={{ fontWeight: 700, color: '#fff', fontSize: '1rem' }}>
+                    <div style={{ fontWeight: 700, color: 'var(--color-text-primary)', fontSize: '1rem' }}>
                       {test.clientName}
                     </div>
                     <div style={{ fontSize: '0.85rem', color: 'var(--color-text-secondary)' }}>
@@ -213,7 +213,7 @@ export default function TestimonialsBlogSection({
                 }}
                 onMouseEnter={(e) => {
                   (e.currentTarget as HTMLElement).style.transform = 'translateY(-6px)';
-                  (e.currentTarget as HTMLElement).style.borderColor = 'rgba(0, 242, 254, 0.4)';
+                  (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255, 255, 255, 0.4)';
                 }}
                 onMouseLeave={(e) => {
                   (e.currentTarget as HTMLElement).style.transform = 'translateY(0)';
@@ -224,7 +224,7 @@ export default function TestimonialsBlogSection({
                   style={{
                     position: 'relative',
                     height: '210px',
-                    background: 'rgba(0,0,0,0.5)',
+                    background: 'var(--color-bg-subtle)',
                   }}
                 >
                   <img
@@ -234,7 +234,7 @@ export default function TestimonialsBlogSection({
                       width: '100%',
                       height: '100%',
                       objectFit: 'cover',
-                      opacity: 0.85,
+                      opacity: 0.9,
                     }}
                   />
                   <div
@@ -244,12 +244,13 @@ export default function TestimonialsBlogSection({
                       left: '1rem',
                       padding: '0.35rem 0.85rem',
                       borderRadius: '999px',
-                      background: 'rgba(11,12,16,0.85)',
+                      background: 'var(--color-bg-surface)',
                       border: '1px solid var(--color-border)',
                       fontSize: '0.74rem',
                       fontWeight: 700,
-                      color: 'var(--color-accent-cyan)',
+                      color: 'var(--color-text-primary)',
                       textTransform: 'uppercase',
+                      boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
                     }}
                   >
                     {post.category}
@@ -291,7 +292,7 @@ export default function TestimonialsBlogSection({
                       style={{
                         fontSize: '1.35rem',
                         fontWeight: 700,
-                        color: '#fff',
+                        color: 'var(--color-text-primary)',
                         marginBottom: '0.75rem',
                         lineHeight: 1.35,
                       }}

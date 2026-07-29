@@ -65,7 +65,7 @@ export default function ProjectGallery({
               flexWrap: 'wrap',
               gap: '0.6rem',
               padding: '0.4rem',
-              background: 'rgba(0,0,0,0.4)',
+              background: 'var(--color-bg-subtle)',
               borderRadius: '999px',
               border: '1px solid var(--color-border)',
             }}
@@ -77,12 +77,12 @@ export default function ProjectGallery({
                 style={{
                   padding: '0.55rem 1.15rem',
                   borderRadius: '999px',
-                  border: 'none',
+                  border: activeCategory === cat.value ? '1px solid var(--color-border)' : '1px solid transparent',
                   background:
                     activeCategory === cat.value
-                      ? 'linear-gradient(135deg, var(--color-accent-cyan), var(--color-accent-violet))'
+                      ? 'var(--color-text-primary)'
                       : 'transparent',
-                  color: activeCategory === cat.value ? '#0b0c10' : 'var(--color-text-secondary)',
+                  color: activeCategory === cat.value ? 'var(--color-bg-primary)' : 'var(--color-text-secondary)',
                   fontWeight: activeCategory === cat.value ? 700 : 500,
                   fontSize: '0.85rem',
                   cursor: 'pointer',
@@ -117,7 +117,7 @@ export default function ProjectGallery({
               }}
               onMouseEnter={(e) => {
                 (e.currentTarget as HTMLElement).style.transform = 'translateY(-5px)';
-                (e.currentTarget as HTMLElement).style.borderColor = 'rgba(0, 242, 254, 0.35)';
+                (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255, 255, 255, 0.35)';
               }}
               onMouseLeave={(e) => {
                 (e.currentTarget as HTMLElement).style.transform = 'translateY(0)';
@@ -129,7 +129,7 @@ export default function ProjectGallery({
                 style={{
                   position: 'relative',
                   height: '210px',
-                  background: 'rgba(0,0,0,0.5)',
+                  background: 'var(--color-bg-subtle)',
                   overflow: 'hidden',
                 }}
               >
@@ -140,7 +140,7 @@ export default function ProjectGallery({
                     width: '100%',
                     height: '100%',
                     objectFit: 'cover',
-                    opacity: 0.85,
+                    opacity: 0.9,
                   }}
                 />
                 <div
@@ -150,12 +150,13 @@ export default function ProjectGallery({
                     right: '0.8rem',
                     padding: '0.35rem 0.75rem',
                     borderRadius: '8px',
-                    background: 'rgba(0,0,0,0.75)',
+                    background: 'var(--color-bg-surface)',
                     border: '1px solid var(--color-border)',
                     fontSize: '0.72rem',
                     fontWeight: 700,
-                    color: '#fff',
+                    color: 'var(--color-text-primary)',
                     textTransform: 'uppercase',
+                    boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
                   }}
                 >
                   {project.category}
@@ -177,7 +178,7 @@ export default function ProjectGallery({
                     style={{
                       fontSize: '1.3rem',
                       fontWeight: 700,
-                      color: '#fff',
+                      color: 'var(--color-text-primary)',
                       marginBottom: '0.5rem',
                     }}
                   >
@@ -210,8 +211,8 @@ export default function ProjectGallery({
                           style={{
                             padding: '0.35rem 0.7rem',
                             borderRadius: '8px',
-                            background: 'rgba(0, 242, 254, 0.08)',
-                            border: '1px solid rgba(0, 242, 254, 0.2)',
+                            background: 'var(--color-bg-subtle)',
+                            border: '1px solid var(--color-border)',
                             fontSize: '0.76rem',
                             display: 'flex',
                             alignItems: 'center',
@@ -219,7 +220,7 @@ export default function ProjectGallery({
                           }}
                         >
                           <BarChart2 size={12} color="var(--color-accent-cyan)" />
-                          <span style={{ fontWeight: 700, color: '#fff' }}>{metric.value}</span>
+                          <span style={{ fontWeight: 700, color: 'var(--color-text-primary)' }}>{metric.value}</span>
                           <span style={{ color: 'var(--color-text-muted)' }}>{metric.label}</span>
                         </div>
                       ))}

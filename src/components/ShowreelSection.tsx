@@ -73,7 +73,7 @@ export default function ShowreelSection({
               }}
               onMouseEnter={(e) => {
                 (e.currentTarget as HTMLElement).style.transform = 'translateY(-6px)';
-                (e.currentTarget as HTMLElement).style.borderColor = 'rgba(0, 242, 254, 0.4)';
+                (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255, 255, 255, 0.4)';
               }}
               onMouseLeave={(e) => {
                 (e.currentTarget as HTMLElement).style.transform = 'translateY(0)';
@@ -85,7 +85,7 @@ export default function ShowreelSection({
                 style={{
                   position: 'relative',
                   height: '240px',
-                  background: 'rgba(0,0,0,0.4)',
+                  background: 'var(--color-bg-subtle)',
                   overflow: 'hidden',
                 }}
               >
@@ -96,7 +96,7 @@ export default function ShowreelSection({
                     width: '100%',
                     height: '100%',
                     objectFit: 'cover',
-                    opacity: 0.85,
+                    opacity: 0.9,
                   }}
                 />
                 <div
@@ -106,12 +106,13 @@ export default function ShowreelSection({
                     left: '1rem',
                     padding: '0.4rem 0.8rem',
                     borderRadius: '999px',
-                    background: 'rgba(11, 12, 16, 0.85)',
+                    background: 'var(--color-bg-surface)',
                     border: '1px solid var(--color-border)',
                     fontSize: '0.75rem',
                     fontWeight: 700,
-                    color: 'var(--color-accent-cyan)',
+                    color: 'var(--color-text-primary)',
                     textTransform: 'uppercase',
+                    boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
                   }}
                 >
                   {project.category}
@@ -144,7 +145,7 @@ export default function ShowreelSection({
                     style={{
                       fontSize: '1.45rem',
                       fontWeight: 700,
-                      color: '#fff',
+                      color: 'var(--color-text-primary)',
                       marginBottom: '0.6rem',
                       lineHeight: 1.25,
                     }}
@@ -178,7 +179,7 @@ export default function ShowreelSection({
                           style={{
                             padding: '0.45rem 0.8rem',
                             borderRadius: '10px',
-                            background: 'rgba(255, 255, 255, 0.04)',
+                            background: 'var(--color-bg-subtle)',
                             border: '1px solid var(--color-border)',
                             fontSize: '0.78rem',
                             display: 'flex',
@@ -187,7 +188,7 @@ export default function ShowreelSection({
                           }}
                         >
                           <CheckCircle2 size={13} color="var(--color-accent-cyan)" />
-                          <span style={{ fontWeight: 700, color: '#fff' }}>{metric.value}</span>
+                          <span style={{ fontWeight: 700, color: 'var(--color-text-primary)' }}>{metric.value}</span>
                           <span style={{ color: 'var(--color-text-muted)' }}>{metric.label}</span>
                         </div>
                       ))}

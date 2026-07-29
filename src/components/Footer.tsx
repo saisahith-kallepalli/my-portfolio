@@ -12,7 +12,7 @@ export default function Footer() {
   return (
     <footer
       style={{
-        background: '#0b0c10',
+        background: 'var(--color-bg-surface)',
         borderTop: '1px solid var(--color-border)',
         padding: '4rem 0 2.5rem',
       }}
@@ -37,7 +37,7 @@ export default function Footer() {
                 gap: '0.75rem',
                 fontWeight: 800,
                 fontSize: '1.2rem',
-                color: '#fff',
+                color: 'var(--color-text-primary)',
                 marginBottom: '0.5rem',
               }}
             >
@@ -46,11 +46,11 @@ export default function Footer() {
                   width: '32px',
                   height: '32px',
                   borderRadius: '8px',
-                  background: 'linear-gradient(135deg, var(--color-accent-cyan), var(--color-accent-violet))',
+                  background: 'var(--color-text-primary)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  color: '#0b0c10',
+                  color: 'var(--color-bg-primary)',
                   fontWeight: 900,
                   fontSize: '0.9rem',
                 }}
@@ -74,12 +74,12 @@ export default function Footer() {
                 width: '42px',
                 height: '42px',
                 borderRadius: '50%',
-                background: 'rgba(255,255,255,0.05)',
+                background: 'var(--color-bg-subtle)',
                 border: '1px solid var(--color-border)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                color: '#fff',
+                color: 'var(--color-text-primary)',
                 textDecoration: 'none',
               }}
               aria-label="GitHub Profile"
@@ -95,12 +95,12 @@ export default function Footer() {
                 width: '42px',
                 height: '42px',
                 borderRadius: '50%',
-                background: 'rgba(255,255,255,0.05)',
+                background: 'var(--color-bg-subtle)',
                 border: '1px solid var(--color-border)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                color: '#fff',
+                color: 'var(--color-text-primary)',
                 textDecoration: 'none',
               }}
               aria-label="LinkedIn Profile"
@@ -114,12 +114,12 @@ export default function Footer() {
                 width: '42px',
                 height: '42px',
                 borderRadius: '50%',
-                background: 'rgba(255,255,255,0.05)',
+                background: 'var(--color-bg-subtle)',
                 border: '1px solid var(--color-border)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                color: '#fff',
+                color: 'var(--color-text-primary)',
                 textDecoration: 'none',
               }}
               aria-label="Send Email"
@@ -138,7 +138,7 @@ export default function Footer() {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                color: '#0b0c10',
+                color: 'var(--color-bg-primary)',
                 cursor: 'pointer',
                 marginLeft: '0.5rem',
               }}
@@ -153,7 +153,7 @@ export default function Footer() {
         <div
           style={{
             paddingTop: '2rem',
-            borderTop: '1px solid rgba(255,255,255,0.06)',
+            borderTop: '1px solid var(--color-border)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
@@ -164,7 +164,7 @@ export default function Footer() {
           }}
         >
           <div>
-            &copy; {new Date().getFullYear()} Kallepalli Sai Sahith. All rights reserved. Crafted with Next.js 14 &amp; React 18.
+            &copy; {new Date().getFullYear()} KALLEPALLI Sai Sahith. All rights reserved. Crafted with Next.js 14 &amp; React 18.
           </div>
           <div style={{ display: 'flex', gap: '1.5rem' }}>
             <span>Core Web Vitals Optimized</span>

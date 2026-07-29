@@ -5,7 +5,7 @@ import { sendInquiryEmail } from '@/lib/mail';
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { name, email, projectType, budget, message } = body;
+    const { name, email, subject, projectType, budget, message } = body;
 
     // Basic server-side validation
     if (!name || !email || !message) {
@@ -26,7 +26,8 @@ export async function POST(req: NextRequest) {
     const inquiry = db.addInquiry({
       name,
       email,
-      projectType: projectType || 'Senior Full Stack MERN Engineering',
+      subject: subject || 'General Inquiry',
+      projectType: projectType || subject || 'General Inquiry',
       budget: budget || 'Flexible',
       message,
     });
@@ -36,7 +37,8 @@ export async function POST(req: NextRequest) {
       await sendInquiryEmail({
         name,
         email,
-        projectType: projectType || 'Senior Full Stack MERN Engineering',
+        subject: subject || 'General Inquiry',
+        projectType: projectType || subject || 'General Inquiry',
         budget: budget || 'Flexible',
         message,
       });

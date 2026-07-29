@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Download, Menu, X } from 'lucide-react';
+import ThemeToggle from '@/components/ThemeToggle';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -30,7 +31,7 @@ export default function Navbar() {
       className="glass-navbar"
       style={{
         padding: scrolled ? '0.8rem 0' : '1.25rem 0',
-        boxShadow: scrolled ? '0 10px 30px rgba(0,0,0,0.5)' : 'none',
+        boxShadow: scrolled ? '0 10px 30px rgba(0,0,0,0.15)' : 'none',
       }}
     >
       <div
@@ -52,7 +53,7 @@ export default function Navbar() {
             fontWeight: 800,
             fontSize: '1.25rem',
             letterSpacing: '-0.03em',
-            color: '#fff',
+            color: 'var(--color-text-primary)',
           }}
         >
           <div
@@ -60,11 +61,12 @@ export default function Navbar() {
               width: '38px',
               height: '38px',
               borderRadius: '10px',
-              background: 'linear-gradient(135deg, var(--color-accent-cyan), var(--color-accent-violet))',
+              background: 'var(--color-bg-surface)',
+              border: '1px solid var(--color-border)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              color: '#0b0c10',
+              color: 'var(--color-text-primary)',
               fontWeight: 900,
             }}
           >
@@ -77,7 +79,7 @@ export default function Navbar() {
                 display: 'block',
                 fontSize: '0.68rem',
                 fontWeight: 600,
-                color: 'var(--color-accent-cyan)',
+                color: 'var(--color-text-secondary)',
                 fontFamily: 'var(--font-mono)',
               }}
             >
@@ -86,61 +88,66 @@ export default function Navbar() {
           </div>
         </a>
 
-        {/* Desktop Navigation Links */}
-        <nav
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '1.75rem',
-          }}
-          className="desktop-nav"
-        >
-          {navLinks.map((link, idx) => (
-            <a
-              key={idx}
-              href={link.href}
-              style={{
-                textDecoration: 'none',
-                color: 'var(--color-text-secondary)',
-                fontSize: '0.92rem',
-                fontWeight: 500,
-                transition: 'color 0.2s',
-              }}
-              onMouseEnter={(e) => ((e.target as HTMLElement).style.color = '#fff')}
-              onMouseLeave={(e) =>
-                ((e.target as HTMLElement).style.color = 'var(--color-text-secondary)')
-              }
-            >
-              {link.label}
-            </a>
-          ))}
+        {/* Right side: Nav links + Theme Toggle + Download CV */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+          <ThemeToggle />
 
-          <a
-            href="/kallepalli-sai-sahith-resume.pdf"
-            download="Kallepalli_Sai_Sahith_Resume.pdf"
-            className="btn-primary"
-            style={{ padding: '0.65rem 1.3rem', fontSize: '0.88rem' }}
+          {/* Desktop Navigation Links */}
+          <nav
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '1.75rem',
+            }}
+            className="desktop-nav"
           >
-            <Download size={15} />
-            <span>Download CV</span>
-          </a>
-        </nav>
+            {navLinks.map((link, idx) => (
+              <a
+                key={idx}
+                href={link.href}
+                style={{
+                  textDecoration: 'none',
+                  color: 'var(--color-text-secondary)',
+                  fontSize: '0.92rem',
+                  fontWeight: 500,
+                  transition: 'color 0.2s',
+                }}
+                onMouseEnter={(e) => ((e.target as HTMLElement).style.color = 'var(--color-text-primary)')}
+                onMouseLeave={(e) =>
+                  ((e.target as HTMLElement).style.color = 'var(--color-text-secondary)')
+                }
+              >
+                {link.label}
+              </a>
+            ))}
 
-        {/* Mobile Menu Button */}
-        <button
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          style={{
-            background: 'none',
-            border: 'none',
-            color: '#fff',
-            cursor: 'pointer',
-            display: 'none',
-          }}
-          aria-label="Toggle mobile menu"
-          className="mobile-menu-btn"
-        >
-          {mobileMenuOpen ? <X size={26} /> : <Menu size={26} />}
-        </button>
+            <a
+              href="/kallepalli-sai-sahith-resume.pdf"
+              download="Kallepalli_Sai_Sahith_Resume.pdf"
+              className="btn-primary"
+              style={{ padding: '0.65rem 1.3rem', fontSize: '0.88rem' }}
+            >
+              <Download size={15} />
+              <span>Download CV</span>
+            </a>
+          </nav>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            style={{
+              background: 'none',
+              border: 'none',
+              color: 'var(--color-text-primary)',
+              cursor: 'pointer',
+              display: 'none',
+            }}
+            aria-label="Toggle mobile menu"
+            className="mobile-menu-btn"
+          >
+            {mobileMenuOpen ? <X size={26} /> : <Menu size={26} />}
+          </button>
+        </div>
       </div>
 
       {/* Responsive Styles via Style block */}
