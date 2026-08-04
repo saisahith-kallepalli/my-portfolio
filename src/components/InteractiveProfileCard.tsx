@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { User, Zap, RefreshCw, Cpu, Eye } from "lucide-react";
+import { motion } from "framer-motion";
+import { Sparkles } from "lucide-react";
 
 interface InteractiveProfileCardProps {
   className?: string;
@@ -13,10 +13,7 @@ export default function InteractiveProfileCard({
   className = "",
   style = {},
 }: InteractiveProfileCardProps) {
-  // 0 = Professional Photo (/profile-real.jpg), 1 = 3D Cyber Avatar (/profile-3d.png)
-  const [activeMode, setActiveMode] = useState<"real" | "3d">("real");
   const [isHovered, setIsHovered] = useState(false);
-  const [autoHoverTransition, setAutoHoverTransition] = useState(false);
 
   // Mouse tilt position
   const [rotateX, setRotateX] = useState(0);
@@ -47,26 +44,13 @@ export default function InteractiveProfileCard({
 
   const handleMouseEnter = () => {
     setIsHovered(true);
-    if (autoHoverTransition) {
-      setActiveMode((prev) => (prev === "real" ? "3d" : "real"));
-    }
   };
 
   const handleMouseLeave = () => {
     setIsHovered(false);
     setRotateX(0);
     setRotateY(0);
-    if (autoHoverTransition) {
-      setActiveMode("real");
-    }
   };
-
-  const toggleMode = (mode: "real" | "3d") => {
-    setActiveMode(mode);
-  };
-
-  const currentImage =
-    activeMode === "real" ? "/profile-real.png" : "/profile-3d.png";
 
   return (
     <div
@@ -89,9 +73,7 @@ export default function InteractiveProfileCard({
           height: "85%",
           borderRadius: "50%",
           background:
-            activeMode === "real"
-              ? "radial-gradient(circle, rgba(0, 242, 254, 0.22) 0%, rgba(127, 0, 255, 0.12) 60%, transparent 80%)"
-              : "radial-gradient(circle, rgba(127, 0, 255, 0.28) 0%, rgba(0, 242, 254, 0.15) 60%, transparent 80%)",
+            "radial-gradient(circle, rgba(136, 136, 136, 0.18) 0%, rgba(0, 0, 0, 0.08) 60%, transparent 80%)",
           filter: "blur(50px)",
           transition: "background 0.7s ease",
           pointerEvents: "none",
@@ -133,8 +115,8 @@ export default function InteractiveProfileCard({
             width: "8px",
             height: "8px",
             borderRadius: "50%",
-            backgroundColor: "#00f2fe",
-            boxShadow: "0 0 10px #00f2fe",
+            backgroundColor: "var(--color-text-primary)",
+            boxShadow: "0 0 10px var(--color-text-primary)",
           }}
         />
         <span
@@ -179,19 +161,19 @@ export default function InteractiveProfileCard({
         }}
         className="hover-badge"
       >
-        <Cpu size={14} color="#00f2fe" />
         <span
           style={{
-            fontSize: "0.76rem",
+            fontSize: "0.78rem",
             fontWeight: 700,
+            fontFamily: "var(--font-mono)",
             color: "var(--color-text-primary)",
           }}
         >
-          MERN &amp; Cloud Architect
+          Enterprise UI/UX &bull; SSR
         </span>
       </motion.div>
 
-      {/* Main 3D Tilt Magnetic Card Container */}
+      {/* Main 3D Tilt Card Container */}
       <motion.div
         ref={cardRef}
         onMouseMove={handleMouseMove}
@@ -215,11 +197,9 @@ export default function InteractiveProfileCard({
           borderRadius: "28px",
           padding: "8px",
           background:
-            activeMode === "real"
-              ? "linear-gradient(135deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.04) 100%)"
-              : "linear-gradient(135deg, rgba(0,242,254,0.45) 0%, rgba(127,0,255,0.3) 100%)",
+            "linear-gradient(135deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.04) 100%)",
           boxShadow: isHovered
-            ? "0 25px 60px rgba(0, 0, 0, 0.65), 0 0 35px rgba(0, 242, 254, 0.25)"
+            ? "0 25px 60px rgba(0, 0, 0, 0.65), 0 0 35px rgba(255, 255, 255, 0.15)"
             : "0 18px 45px rgba(0, 0, 0, 0.5)",
           transformStyle: "preserve-3d",
           cursor: "pointer",
@@ -250,8 +230,8 @@ export default function InteractiveProfileCard({
               gap: "0.4rem",
               padding: "0.35rem 0.75rem",
               borderRadius: "999px",
-              background: "rgba(10, 11, 13, 0.78)",
-              border: "1px solid rgba(255, 255, 255, 0.18)",
+              background: "var(--color-bg-surface)",
+              border: "1px solid var(--color-border)",
               backdropFilter: "blur(10px)",
             }}
           >
@@ -270,7 +250,7 @@ export default function InteractiveProfileCard({
               style={{
                 fontSize: "0.72rem",
                 fontWeight: 700,
-                color: "#fff",
+                color: "var(--color-text-primary)",
                 letterSpacing: "0.04em",
               }}
             >
@@ -278,94 +258,31 @@ export default function InteractiveProfileCard({
             </span>
           </div>
 
-          {/* Mode Badge Top Left */}
+          {/* Rotating Circular Text String Badge ("String on rotate") */}
+          
+
+          {/* Executive Photo Showcase */}
           <div
             style={{
               position: "absolute",
-              top: "1rem",
-              left: "1rem",
-              zIndex: 5,
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "0.35rem",
-              padding: "0.35rem 0.75rem",
-              borderRadius: "999px",
-              background: "rgba(10, 11, 13, 0.78)",
-              border: "1px solid rgba(255, 255, 255, 0.15)",
-              backdropFilter: "blur(10px)",
+              inset: 0,
+              width: "100%",
+              height: "100%",
             }}
           >
-            {activeMode === "real" ? (
-              <User size={13} color="#00f2fe" />
-            ) : (
-              <Zap size={13} color="#a855f7" />
-            )}
-            <span
+            <img
+              src="/profile-real.png"
+              alt="Sai Sahith Kallepalli - Professional Headshot"
               style={{
-                fontSize: "0.72rem",
-                fontWeight: 700,
-                fontFamily: "var(--font-mono)",
-                color: "#fff",
-              }}
-            >
-              {activeMode === "real" ? "EXECUTIVE PHOTO" : "3D CYBER AVATAR"}
-            </span>
-          </div>
-
-          {/* Transitional Image Showcase with 3D Flip & Morph Effect */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeMode}
-              initial={{ opacity: 0, rotateY: -35, scale: 0.94 }}
-              animate={{ opacity: 1, rotateY: 0, scale: 1 }}
-              exit={{ opacity: 0, rotateY: 35, scale: 0.94 }}
-              transition={{
-                duration: 0.45,
-                ease: [0.16, 1, 0.3, 1],
-              }}
-              style={{
-                position: "absolute",
-                inset: 0,
                 width: "100%",
                 height: "100%",
+                objectFit: "cover",
+                objectPosition: "center 15%",
+                filter: "contrast(1.04) saturate(1.05)",
+                transition: "transform 0.5s ease, filter 0.5s ease",
               }}
-            >
-              <img
-                src={currentImage}
-                alt={
-                  activeMode === "real"
-                    ? "Sai Sahith Kallepalli - Professional Headshot"
-                    : "Sai Sahith Kallepalli - 3D Developer Avatar"
-                }
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                  objectPosition: "center 15%",
-                  filter:
-                    activeMode === "real"
-                      ? "contrast(1.04) saturate(1.05)"
-                      : "contrast(1.08) saturate(1.15)",
-                  transition: "transform 0.5s ease, filter 0.5s ease",
-                }}
-              />
-
-              {/* Futuristic Cyber Scanline Sweep during 3D mode */}
-              {activeMode === "3d" && (
-                <div
-                  style={{
-                    position: "absolute",
-                    inset: 0,
-                    background:
-                      "linear-gradient(to bottom, transparent 0%, rgba(0, 242, 254, 0.08) 50%, transparent 100%)",
-                    backgroundSize: "100% 4px",
-                    pointerEvents: "none",
-                    mixBlendMode: "screen",
-                  }}
-                />
-              )}
-            </motion.div>
-          </AnimatePresence>
+            />
+          </div>
 
           {/* Specular Glare Overlay that tracks mouse position */}
           {isHovered && (
@@ -392,7 +309,7 @@ export default function InteractiveProfileCard({
               height: "42%",
               background:
                 "linear-gradient(to top, rgba(10, 11, 13, 0.95) 0%, rgba(10, 11, 13, 0.4) 60%, transparent 100%)",
-              pointerEvents: "none",
+                pointerEvents: "none",
               zIndex: 3,
             }}
           />
@@ -433,39 +350,9 @@ export default function InteractiveProfileCard({
                 Senior Full Stack Engineer
               </div>
             </div>
-
-            {/* Quick transition trigger icon inside card */}
-            <button
-              type="button"
-              onClick={(e) => {
-                e.stopPropagation();
-                toggleMode(activeMode === "real" ? "3d" : "real");
-              }}
-              title="Click to flip image mode"
-              style={{
-                background: "rgba(255, 255, 255, 0.15)",
-                border: "1px solid rgba(255, 255, 255, 0.25)",
-                borderRadius: "12px",
-                width: "38px",
-                height: "38px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                color: "#fff",
-                cursor: "pointer",
-                backdropFilter: "blur(8px)",
-                transition: "all 0.2s ease",
-              }}
-              className="quick-flip-btn"
-              aria-label="Toggle Image Mode"
-            >
-              <RefreshCw size={16} />
-            </button>
           </div>
         </div>
       </motion.div>
-
-      {/* Interactive Transitional Controller Bar below card */}
 
       <style jsx>{`
         @keyframes pulseDot {
@@ -479,9 +366,13 @@ export default function InteractiveProfileCard({
             opacity: 0.7;
           }
         }
-        .quick-flip-btn:hover {
-          background: rgba(255, 255, 255, 0.25) !important;
-          transform: scale(1.08);
+        @keyframes rotateString {
+          0% {
+            transform: rotate(0deg);
+          }
+          100% {
+            transform: rotate(360deg);
+          }
         }
       `}</style>
     </div>
